@@ -1,0 +1,232 @@
+import java.lang.Math
+import java.lang.Double
+
+rule se4ACVoltageLN_xyz
+when Item se4ACVoltageLN_int received update
+then
+if (se4ACVoltageSF_int.state != NULL)
+{
+  var Double SF = (se4ACVoltageSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACVoltageLN_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACVoltageLN, result)
+}
+end
+
+
+rule se4ACVoltageAN_xyz
+when Item se4ACVoltageAN_int received update
+then
+if (se4ACVoltageSF_int.state != NULL)
+{
+  var Double SF = (se4ACVoltageSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACVoltageAN_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACVoltageAN, result)
+}
+end
+
+rule se4ACVoltageBN_xyz
+when Item se4ACVoltageBN_int received update
+then
+if (se4ACVoltageSF_int.state != NULL)
+{
+  var Double SF = (se4ACVoltageSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACVoltageBN_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACVoltageBN, result)
+}
+end
+
+rule se4ACVoltageCN_xyz
+when Item se4ACVoltageCN_int received update
+then
+if (se4ACVoltageSF_int.state != NULL)
+{
+  var Double SF = (se4ACVoltageSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACVoltageCN_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACVoltageCN, result)
+}
+end
+
+rule se4ACCurrent_xyz
+when Item se4ACCurrent_int received update
+then
+if (se4ACCurrentSF_int.state != NULL)
+{
+  var Double SF = (se4ACCurrentSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACCurrent_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACCurrent, result)
+}
+end
+
+
+rule se4ACCurrentA_xyz
+when Item se4ACCurrentA_int received update
+then
+if (se4ACCurrentSF_int.state != NULL)
+{
+  var Double SF = (se4ACCurrentSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACCurrentA_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACCurrentA, result)
+}
+end
+
+rule se4ACCurrentB_xyz
+when Item se4ACCurrentB_int received update
+then
+if (se4ACCurrentSF_int.state != NULL)
+{
+  var Double SF = (se4ACCurrentSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACCurrentB_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACCurrentB, result)
+}
+end
+
+rule se4ACCurrentC_xyz
+when Item se4ACCurrentC_int received update
+then
+if (se4ACCurrentSF_int.state != NULL)
+{
+  var Double SF = (se4ACCurrentSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACCurrentC_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACCurrentC, result)
+}
+end
+
+
+rule se4ACPower_xyz
+when Item se4ACPower_int received update
+then
+if (se4ACPowerSF_int.state != NULL)
+{
+var Double SF = (se4ACPowerSF_int.state as DecimalType).doubleValue
+if (SF > 32767) SF = SF-(65536).doubleValue
+var Double result = (se4ACPower_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+postUpdate(se4ACPower, result)
+var Integer intValue = (se4ACPower_int.state as DecimalType).intValue
+if ( intValue < 0)
+{
+  postUpdate(se4ACPowerImport, Math::abs(result))
+  postUpdate(se4ACPowerExport, 0)
+}
+else
+{
+  postUpdate(se4ACPowerImport, 0)
+  postUpdate(se4ACPowerExport, result)
+}
+}
+end
+
+rule se4ACPowerA_xyz
+when Item se4ACPowerA_int received update
+then
+if (se4ACPowerSF_int.state != NULL)
+{
+  var Double SF = (se4ACPowerSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACPowerA_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACPowerA, result)
+}
+end
+
+rule se4ACPowerB_xyz
+when Item se4ACPowerB_int received update
+then
+if (se4ACPowerSF_int.state != NULL)
+{
+  var Double SF = (se4ACPowerSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACPowerB_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACPowerB, result)
+}
+end
+
+rule se4ACPowerC_xyz
+when Item se4ACPowerC_int received update
+then
+if (se4ACPowerSF_int.state != NULL)
+{
+  var Double SF = (se4ACPowerSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACPowerC_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACPowerC, result)
+}
+end
+
+rule se4ACFreq_xyz
+when Item se4ACFreq_int received update
+then
+if (se4ACFreqSF_int.state != NULL)
+{
+  var Double SF = (se4ACFreqSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACFreq_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACFreq, result)
+}
+end
+
+
+rule se4ACPower_xyz
+when Item se4ACPower_int received update
+then
+if (se4ACPowerSF_int.state != NULL)
+{
+  var Double SF = (se4ACPowerSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACPower_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACPower, result)
+}
+end
+
+
+rule se4ACPowerProduction_xyz
+when Item se4ACPowerProduction_int received update
+then
+if (se4ACPowerProductionSF_int.state != NULL)
+{
+  var Double SF = (se4ACPowerProductionSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4ACPowerProduction_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4ACPowerProduction, result)
+}
+end
+
+
+rule se4DCVoltage_xyz
+when Item se4DCVoltage_int received update
+then
+if (se4DCVoltageSF_int.state != NULL)
+{
+  var Double SF = (se4DCVoltageSF_int.state as DecimalType).doubleValue
+  if (SF > 32767) SF = SF-(65536).doubleValue
+  var Double result = (se4DCVoltage_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+  postUpdate(se4DCVoltage, result)
+
+}
+end
+
+
+rule se4ACPowerConsumption_xyz
+when Item se4ACPower received update
+then
+
+var Double prodValue = 0.0
+var Double exportValue = 0.0
+var Double importValue = 0.0
+
+if (se4ACPowerProduction.state != NULL) prodValue = (se4ACPowerProduction.state as DecimalType).doubleValue
+if (se4ACPowerExport.state != NULL) exportValue = (se4ACPowerExport.state as DecimalType).doubleValue
+if (se4ACPowerImport.state != NULL) importValue = (se4ACPowerImport.state as DecimalType).doubleValue
+
+var Double result = prodValue - exportValue + importValue
+
+postUpdate(se4ACPowerConsumption, result)
+end
+
+

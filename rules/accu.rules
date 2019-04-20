@@ -1,0 +1,49 @@
+rule accuControl_switchOff_by_Export
+when Item se4ACPowerExport received update
+then
+  logWarn("AC","Export: {} Load state: {}, charging: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state)
+  if (ESP8266AccuLoadState.state > 30 && se4ACPowerExport.state <= 0 && ESP8266_REL1.state == ON){
+    logWarn("AC","no export - switching charging off")
+    sendTelegram("bot1", "Солнце не светит, отрубаем зарядку.") 
+    postUpdate(ESP8266_REL1,OFF)
+  }
+end
+
+rule accuControl_switchOff_by_LoadState
+when Item ESP8266AccuLoadState received update
+then
+  logWarn("AC","Load state: {}, charging: {}", ESP8266AccuLoadState.state,ESP8266_REL1.state)
+  if (ESP8266AccuLoadState.state >= 91 && ESP8266_REL1.state==ON){
+    logWarn("AC","accu full - switching charging off")
+    sendTelegram("bot1", "Аккум заряжен, отрубаем зарядку.")
+    postUpdate(ESP8266_REL1,OFF)
+  }
+end
+
+
+rule accuControl_switchOn_by_Export
+when Item se4ACPowerExport received update
+then
+  logWarn("AC","Export: {} Load state: {}, charging: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state)
+  if (ESP8266AccuLoadState.state < 60 && se4ACPowerExport.state >= 250 && ESP8266_REL1.state == OFF){
+    logWarn("AC","exporting, switching charging on")
+    sendTelegram("bot1", "Солнце светит, заряжаемся.")
+    postUpdate(ESP8266_REL1,ON)
+  }
+end
+
+
+
+rule accuControl_switchOn_by_LoadState
+when Item ESP8266AccuLoadState received update
+then
+  logWarn("AC","Load state: {}, charging: {}", ESP8266AccuLoadState.state,ESP8266_REL1.state)
+  if (ESP8266AccuLoadState.state <10 && ESP8266_REL1.state==OFF){
+    logWarn("AC","accu near empty - switching charging on")
+    sendTelegram("bot1", "Аккум почти пустой, врубаем зарядку.")
+    postUpdate(ESP8266_REL1,ON)
+  }
+end
+
+
+

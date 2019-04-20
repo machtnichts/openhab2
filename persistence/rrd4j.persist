@@ -1,0 +1,13 @@
+Strategies {
+        everyMinute : "0 * * * * ?"
+	everyHour   : "0 0 * * * ?"
+	everyDay    : "0 0 0 * * ?"
+
+	// if no strategy is specified for an item entry below, the default list will be used
+	default = everyHour
+}
+
+Items {
+	
+	se4ACPower,se4ACPowerA,se4ACPowerB,se4ACPowerC,se4ACPowerExport,se4ACPowerImport,se4ACPowerConsumption,se4ACPowerProduction, esp8266* : strategy = everyMinute
+}

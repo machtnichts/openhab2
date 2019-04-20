@@ -1,0 +1,67 @@
+Group s4int "SolarEdge Inverter (int-Values)"
+
+Number se4ACCurrent_int   "AC current   (int) [%d A]" (s4int) { modbus="se4ACPower:0" }
+Number se4ACCurrentA_int  "AC current A (int) [%d A]" (s4int) { modbus="se4ACPower:1" }
+Number se4ACCurrentB_int  "AC current B (int) [%d A]" (s4int) { modbus="se4ACPower:2" }
+Number se4ACCurrentC_int  "AC current C (int) [%d A]" (s4int) { modbus="se4ACPower:3" }
+Number se4ACCurrentSF_int "AC current SF  [%d]" (s4int) { modbus="se4ACPower:4" }
+
+Number se4ACVoltageLN_int "AC voltage LN  (int) [%d V]" (s4int) { modbus="se4ACPower:5" }
+Number se4ACVoltageAN_int  "AC voltage AN (int) [%d V]" (s4int) { modbus="se4ACPower:6" }
+Number se4ACVoltageBN_int  "AC voltage BN (int) [%d V]" (s4int) { modbus="se4ACPower:7" }
+Number se4ACVoltageCN_int  "AC voltage CN (int) [%d V]" (s4int) { modbus="se4ACPower:8" }
+
+Number se4ACVoltageLL_int "AC voltage LL (int) [%d V]" (s4int) { modbus="se4ACPower:9" }
+Number se4ACVoltageAB_int  "AC voltage AB (int) [%d V]" (s4int) { modbus="se4ACPower:10" }
+Number se4ACVoltageBC_int  "AC voltage BC (int) [%d V]" (s4int) { modbus="se4ACPower:11" }
+Number se4ACVoltageCA_int  "AC voltage CA (int) [%d V]" (s4int) { modbus="se4ACPower:12" }
+Number se4ACVoltageSF_int "AC voltage SF  [%d]" (s4int) { modbus="se4ACPower:13" }
+
+Number se4ACFreq_int   "AC Frequency (int) [%d Hz]" (s4int) { modbus="se4ACPower:14" }
+Number se4ACFreqSF_int "AC Frequency SF [%d]" (s4int) { modbus="se4ACPower:15" }
+
+Number se4ACPower_int   "AC load   (int) [%d W]" (s4int) { modbus="se4ACPower:16" }
+Number se4ACPowerA_int  "AC load A (int) [%d W]" (s4int) { modbus="se4ACPower:17" }
+Number se4ACPowerB_int  "AC load B (int) [%d W]" (s4int) { modbus="se4ACPower:18" }
+Number se4ACPowerC_int  "AC load C (int) [%d W]" (s4int) { modbus="se4ACPower:19" }
+Number se4ACPowerSF_int "AC load SF  [%d]" (s4int) { modbus="se4ACPower:20" }
+
+
+Number se4ACPowerProduction_int   "AC Power production (int) [%d Watt]" (s4int) { modbus="se4ACPower2:12" }
+Number se4ACPowerProductionSF_int "AC Power production SF [%d]" (s4int) { modbus="se4ACPower2:13" }
+
+Number se4DCVoltage_int         "DC Voltage (int) [%d V]" (s4int) { modbus="se4ACPower2:27" }
+Number se4DCVoltageSF_int       "DC Voltage SF [%d]" (s4int) { modbus="se4ACPower2:28" }
+
+Number se4DCPowerProduction_int   "DC Power production (int) [%d Watt]" (s4int) { modbus="se4ACPower2:28" }
+Number se4DCPowerProductionSF_int "DC Power production SF [%d]" (s4int) { modbus="se4ACPower2:29" }
+
+
+Number se4ACVoltageLN "Voltage LN [%.1f V]" (se4int)
+Number se4ACVoltageAN "Voltage AN [%.1f V]" (se4int)
+Number se4ACVoltageBN "Voltage BN [%.1f V]" (se4int)
+Number se4ACVoltageCN "Voltage CN [%.1f V]" (se4int)
+
+
+Number se4ACCurrent  "Current  [%.2f A]" (se4int)
+Number se4ACCurrentA "Current A[%.2f A]" (se4int)
+Number se4ACCurrentB "Current B[%.2f A]" (se4int)
+Number se4ACCurrentC "Current C[%.2f A]" (se4int)
+
+Number se4ACPower   "Power [%.2f W]" (se4int)
+Number se4ACPowerA  "Power A [%.2f W]" (se4int)
+Number se4ACPowerB  "Power B [%.2f W]" (se4int)
+Number se4ACPowerC  "Power C [%.2f W]" (se4int)
+
+Number se4ACFreq   "Frequency C[%.2f Hz]" (se4int)
+
+
+
+
+Number se4ACPowerImport      "Power import [%.2f W]" (se4int)
+Number se4ACPowerExport      "Power export [%.2f W]" (se4int)
+Number se4ACPowerProduction  "Production [%.2f W]" (se4int)
+Number se4ACPowerConsumption "Consumption [%.2f W]" (se4int)
+Number se4DCPowerProduction  "Production(dc) [%.2f W]" (se4int)
+Number se4DCVoltage          "DC Voltage [%.2f W]" (se4int)
+

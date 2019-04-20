@@ -1,0 +1,104 @@
+sitemap our_home label="Our Home" {
+  Frame label="Power data" {
+    Text item=se4ACPowerProduction
+    Text item=se4ACPowerConsumption
+  }
+
+ Frame label="ESP8266 Accu Monitor"{
+    Text item=ESP8266Temperature3
+    Text item=ESP8266Humidity3
+    Text item=ESP8266Voltage3
+    Text item=ESP8266AccuLoadState
+    Text item=ESP8266LastUpdate3
+    Text item=TLastAccuState
+    Text item=ESP8266Logger31
+    Text item=ESP8266Logger32
+
+    Text item=ESP8266VoltageCell1
+    Text item=ESP8266VoltageCell2
+    Text item=ESP8266VoltageCell3
+    Text item=ESP8266VoltageCell4
+
+    Switch item=ESP8266_REL1
+    Switch item=ESP8266_REL2
+    Switch item=ESP8266_REL3
+  }
+
+
+  Frame label="ESP8266 sensors"{
+    Text item=ESP8266Temperature2
+    Text item=ESP8266Humidity2
+    Text item=ESP8266Voltage2
+    Text item=ESP8266Temperature
+    Text item=ESP8266Humidity
+    Text item=ESP8266CO2
+    Text item=ESP8266Voltage
+    Text item=ESP8266LastUpdate2    
+    Text item=ESP8266LastUpdate1
+    Text item=ESP8266CO2Source
+    Text item=ESP8266Logger
+  }
+
+/*
+  Frame label="ESP8266 Temperature and Humidity" {
+    Switch item=ESP8266_Chart_Period label="Chart Period" mappings=[0="Hour", 1="12 Hours", 2="Day", 3="Week", 4="Month", 5="Year"]
+    Chart label="Last Hour" item=esp8266TempHum period=h refresh=600 visibility=[ESP8266_Chart_Period==0]
+    Chart label="Last 12  Hours" item=esp8266TempHum period=12h refresh=600 visibility=[ESP8266_Chart_Period==1]
+    Chart label="Last day" item=esp8266TempHum period=D refresh=900 visibility=[ESP8266_Chart_Period==2]
+    Chart label="Last Week" item=esp8266TempHum period=W refresh=3600 visibility=[ESP8266_Chart_Period==3]
+    Chart label="Last Month" item=esp8266TempHum period=M refresh=3600 visibility=[ESP8266_Chart_Period==4]
+    Chart label="Last Year" item=esp8266TempHum period=Y refresh=3600 visibility=[ESP8266_Chart_Period==5]
+  }
+*/
+
+  Frame label="ESP8266 Temperature"  {
+    Switch item=ESP8266_Chart_Period label="Chart Period" mappings=[0="Hour", 1="12 Hours", 2="Day", 3="Week", 4="Month", 5="Year"]
+    Chart label="Last Hour" item=esp8266Temp period=h refresh=600 visibility=[ESP8266_Chart_Period==0]
+    Chart label="Last 12  Hours" item=esp8266Temp period=12h refresh=600 visibility=[ESP8266_Chart_Period==1]
+    Chart label="Last day" item=esp8266Temp period=D refresh=900 visibility=[ESP8266_Chart_Period==2]
+    Chart label="Last Week" item=esp8266Temp period=W refresh=3600 visibility=[ESP8266_Chart_Period==3]
+    Chart label="Last Month" item=esp8266Temp period=M refresh=3600 visibility=[ESP8266_Chart_Period==4]
+    Chart label="Last Year" item=esp8266Temp period=Y refresh=3600 visibility=[ESP8266_Chart_Period==5]
+  }
+
+  Frame label="ESP8266 CO2" {
+    Chart label="Last Hour" item=ESP8266CO2 period=h refresh=600  visibility=[ESP8266_Chart_Period==0]
+    Chart label="Last 12  Hours" item=ESP8266CO2 period=12h refresh=600 visibility=[ESP8266_Chart_Period==1]
+    Chart label="Last day" item=ESP8266CO2 period=D refresh=900   visibility=[ESP8266_Chart_Period==2]
+    Chart label="Last Week" item=ESP8266CO2 period=W refresh=3600  visibility=[ESP8266_Chart_Period==3]
+    Chart label="Last Month" item=ESP8266CO2 period=M refresh=3600 visibility=[ESP8266_Chart_Period==4]
+    Chart label="Last Year" item=ESP8266CO2 period=Y refresh=3600 visibility=[ESP8266_Chart_Period==5]
+  }
+
+  Frame label="ESP8266-2 Voltage" {
+    Chart label="Last Hour" item=ESP8266Voltage2 period=h refresh=600
+    Chart label="Last day" item=ESP8266Voltage2 period=D refresh=900
+    Chart label="Last Week" item=ESP8266Voltage2 period=W refresh=3600
+    Chart label="Last Month" item=ESP8266Voltage2 period=M refresh=3600
+  }
+
+
+  Frame label="ESP8266-3 Accu Voltage" {
+    Chart label="Last Hour" item=ESP8266Voltage3 period=h refresh=600
+    Chart label="Last 4 Hours" item=ESP8266Voltage3 period=4h refresh=600
+    Chart label="Last day" item=ESP8266Voltage3 period=D refresh=900
+    Chart label="Last Week" item=ESP8266Voltage3 period=W refresh=3600
+    Chart label="Last Month" item=ESP8266Voltage3 period=M refresh=3600
+  }
+  Frame label="ESP8266-3 Accu Load" {
+    Chart label="Last Hour" item=ESP8266AccuLoadState period=h refresh=600
+    Chart label="Last day" item=ESP8266AccuLoadState period=D refresh=900
+    Chart label="Last Week" item=ESP8266AccuLoadState period=W refresh=3600
+    Chart label="Last Month" item=ESP8266AccuLoadState period=M refresh=3600
+  }
+
+  Frame label="ESP8266 Humidity" {
+    Chart label="Last Hour" item=esp8266Hum period=h refresh=600 visibility=[ESP8266_Chart_Period==0]
+    Chart label="Last 12  Hours" item=esp8266Hum period=12h refresh=600 visibility=[ESP8266_Chart_Period==1]
+    Chart label="Last day" item=esp8266Hum period=D refresh=900 visibility=[ESP8266_Chart_Period==2]
+    Chart label="Last Week" item=esp8266Hum period=W refresh=3600 visibility=[ESP8266_Chart_Period==3]
+    Chart label="Last Month" item=esp8266Hum period=M refresh=3600 visibility=[ESP8266_Chart_Period==4]
+    Chart label="Last Year" item=esp8266Hum period=Y refresh=3600 visibility=[ESP8266_Chart_Period==5]
+  }
+
+}

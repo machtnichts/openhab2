@@ -1,0 +1,91 @@
+import java.text.SimpleDateFormat
+import java.util.TimeZone
+import java.util.Date
+import java.lang.Math
+
+rule es8266Timestamp_1
+when Item ESP8266CO2 received update
+then
+  var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+  sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"))
+  postUpdate(ESP8266LastUpdate1, sdf.format(new Date))
+end
+
+rule es8266Timestamp_2
+when Item ESP8266Temperature2 received update
+then
+  var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+  sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"))
+  postUpdate(ESP8266LastUpdate2, sdf.format(new Date))
+end
+
+rule es8266Timestamp_3
+when Item ESP8266TS3 received update
+then
+  var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+  sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"))
+  postUpdate(ESP8266LastUpdate3, sdf.format(new Date))
+end
+
+rule es8266AccuLoadState_3
+when Item ESP8266Voltage3 received update
+then
+  var loadState = 50
+  var currentVoltage = (ESP8266Voltage3.state as Number).doubleValue
+  var cellCount = 4
+  var cellVoltages = newArrayList(4.20, 4.15, 4.11, 4.08, 4.02, 3.98, 3.95, 3.91, 3.87, 3.85, 3.84, 3.82, 3.80, 3.79, 3.77, 3.75, 3.73, 3.71, 3.69, 3.61, 3.27)
+  var foundVoltageIndex = -1
+  var nearestVoltage = null
+  for (Double cellVoltage : cellVoltages) {
+    if((currentVoltage > cellCount*cellVoltage) && (nearestVoltage === null)) {
+      //logWarn("AM","found cell voltage {}",cellVoltage)
+      nearestVoltage = cellVoltage
+    }
+  }
+
+  if(nearestVoltage !== null){
+    foundVoltageIndex = cellVoltages.indexOf(nearestVoltage)
+    //logWarn("AM","found cell index {}",foundVoltageIndex)
+    loadState = 100 - (foundVoltageIndex*5)
+
+    if(foundVoltageIndex>0){
+      var upperVoltage = cellCount*cellVoltages.get(foundVoltageIndex-1);
+      var lowerVoltage = cellCount*cellVoltages.get(foundVoltageIndex);
+      var onePercentVoltage = (upperVoltage - lowerVoltage) / 5;
+      //logWarn("AM","voltage {} is between {} and {}, 1% is {}",currentVoltage,upperVoltage,lowerVoltage,onePercentVoltage);
+      var diff = currentVoltage - lowerVoltage;
+      var diffFixInPercent = Math.round(diff/onePercentVoltage);
+      loadState = loadState + diffFixInPercent;
+      //logWarn("AM","diff: {}v , diffFix: {}%",diff,diffFixInPercent);
+    }
+    logWarn("AM","voltage: {}v load state {}%",currentVoltage,loadState)
+    postUpdate(ESP8266AccuLoadState,loadState)
+  }
+end
+
+
+/*
+4.2 100
+-------
+4.15 95
+4.11 90
+4.08 85
+4.02 80
+3.98 75
+3.95 70
+3.91 65
+3.87 60
+3.85 55
+3.84 50
+3.82 45
+3.80 40
+3.79 35
+3.77 30
+3.75 25
+3.73 20
+-------
+3.71 15
+3.69 10
+3.61 5
+3.27 0
+*/

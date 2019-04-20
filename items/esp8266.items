@@ -1,0 +1,57 @@
+Group esp8266ChartItems
+Group esp8266 
+Group esp8266Temp
+Group esp8266TempHum
+Group esp8266Hum 
+
+
+String ESP8266CO2Source "SZ CO2 source [%s]" (esp8266)
+Number ESP8266TS "SZ timestamp [%d ms]" (esp8266)
+
+String ESP8266Logger "SZ ESP8266 [%s]" (esp8266)
+String ESP8266Logger31 "AM 1 [%s]" (esp8266)
+String ESP8266Logger32 "AM 2 [%s]" (esp8266)
+
+
+Number ESP8266CO2 "SZ CO2 [%d ppm]" (esp8266,esp8266ChartItems)
+
+Number ESP8266Humidity "SZ humidity [%.1f]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Hum)
+Number ESP8266Temperature "SZ temp [%.1f C]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Temp)
+
+Number ESP8266_Chart_Period "sd"
+Number ESP8266Voltage "SZ voltage [%.2f]" (esp8266)
+
+Number ESP8266Humidity2 "WZ humidity [%.1f]" (esp8266,esp8266TempHum,esp8266Hum)
+Number ESP8266Temperature2 "WZ temp [%.1f C]" (esp8266,esp8266TempHum,esp8266Temp)
+Number ESP8266Voltage2 "WZ voltage [%.2f]" (esp8266)
+Number ESP8266TS2 "WZ timestamp [%d ms]" (esp8266)
+
+Number ESP8266Humidity3 "AM humidity [%.1f]" (esp8266,esp8266TempHum,esp8266Hum)
+Number ESP8266Temperature3 "AM temp [%.1f C]" (esp8266,esp8266TempHum,esp8266Temp)
+Number ESP8266Voltage3 "AM voltage [%.2f]" (esp8266)
+Number ESP8266TS3 "AM timestamp [%d ms]" (esp8266)
+Number ESP8266AccuLoadState "Battery level [%d%%]" (esp8266)
+
+String ESP8266LastUpdate1 "SZ update [%s]" (esp8266)
+String ESP8266LastUpdate2 "WZ update [%s]" (esp8268)
+String ESP8266LastUpdate3 "AM update [%s]" (esp8268)
+
+Number ESP8266VoltageCell1 "AM cell 1 [%.2f]" (esp8266)
+Number ESP8266VoltageCell2 "AM cell 2 [%.2f]" (esp8266)
+Number ESP8266VoltageCell3 "AM cell 3 [%.2f]" (esp8266)
+Number ESP8266VoltageCell4 "AM cell 4 [%.2f]" (esp8266)
+
+
+Number ESP8266Voltage31 "AM voltage 31 [%.2f]" (esp8266)
+Number ESP8266Voltage32 "AM voltage 32 [%.2f]" (esp8266)
+Number ESP8266Voltage33 "AM voltage 33 [%.2f]" (esp8266)
+Number ESP8266Voltage34 "AM voltage 34 [%.2f]" (esp8266)
+Number ESP8266Voltage35 "AM voltage 35 [%.2f]" (esp8266)
+Number ESP8266Voltage36 "AM voltage 36 [%.2f]" (esp8266)
+Number ESP8266Voltage37 "AM voltage 37 [%.2f]" (esp8266)
+Number ESP8266Voltage38 "AM voltage 38 [%.2f]" (esp8266)
+
+
+Switch ESP8266_REL1 "Loader (REL1)"
+Switch ESP8266_REL2 "...... (REL2)"
+Switch ESP8266_REL3 "...... (REL3)"

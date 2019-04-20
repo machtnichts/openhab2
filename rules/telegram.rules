@@ -1,0 +1,84 @@
+import java.lang.Double
+import java.math.Math
+import java.util.TimeZone
+import java.util.GregorianCalendar
+import java.util.Calendar
+import java.util.Date
+
+
+/*
+rule se4ACPowerConsumption_xyzxx
+when Item se4ACPowerConsumption changed
+then
+  sendTelegram("bot1", "Verbrauch: %sW", se4ACPowerConsumption.state.toString)
+end
+*/
+
+rule "Send telegram with Temp"
+when
+   Item ESP8266Temperature2 changed
+then
+   
+   var calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"))
+   var hour = calendar.get(Calendar.HOUR_OF_DAY)
+   var temp = ( ESP8266Temperature2.state as Number).doubleValue
+   var diff = 1
+
+   if (TLastTemp.state != NULL){
+     diff = Math.abs(diff - ( TLastTemp.state as Number).doubleValue)
+   }
+
+   logWarn("TG", "diff: {}  / hour {}", diff, hour)
+   if(hour>=7 && hour<=21 && diff>0.499) 
+   {
+     sendTelegram("bot1", "Температура: %sC°", ESP8266Temperature2.state.toString)
+     postUpdate(TLastTemp, temp)
+   }
+end
+
+rule "Send battery level"
+when
+  Item ESP8266AccuLoadState changed
+then
+  //logWarn("TG", "accu load state changed...")
+  if (TLastAccuState.state==NULL)
+  { 
+    postUpdate(TLastAccuState, 1)
+  }
+  else
+  {
+    var diff = (ESP8266AccuLoadState.state as Number) - (TLastAccuState.state as Number)
+    //logWarn("TG", "accu diff: {} ", diff)
+    diff = Math.abs(diff.longValue)
+    //logWarn("TG", "accu abs diff: {} ", diff)
+    if (diff>1)
+    {
+      sendTelegram("bot1", "Battery level: %s%%", ESP8266AccuLoadState.state.toString)
+      postUpdate(TLastAccuState, ESP8266AccuLoadState.state)
+    }
+  }
+end
+
+rule "Send telegram Waschen!"
+when
+   Item se4ACPowerExport changed 
+then
+   if (TSLastTelegram.state==NULL){
+     postUpdate(TSLastTelegram, 1)
+   }else{
+     var lastUpdate = (TSLastTelegram.state as Number).longValue
+     var nextUpdate = lastUpdate + (1 * 60*60 * 1000)
+     var currentTS  = new Date().getTime()
+     var shouldUpdate = (nextUpdate<=currentTS)
+     if (shouldUpdate){
+       var Double exportValue = 0.0
+       if (se4ACPowerExport.state != NULL) exportValue = (se4ACPowerExport.state as Number).doubleValue
+       if (exportValue > 1000){
+         sendTelegram("bot1", "Здрасти. Кажись соседи стирают нашим электричеством! :)")
+         postUpdate(TSLastTelegram, currentTS)
+       }
+     }
+  }
+end
+
+
