@@ -28,7 +28,7 @@ then
 end
 
 rule es8266AccuLoadState_3
-when Item ESP8266Voltage3 received update
+when Item ESP8266Voltage3 changed 
 then
   var loadState = 50
   var currentVoltage = (ESP8266Voltage3.state as Number).doubleValue

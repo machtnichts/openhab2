@@ -1,49 +1,59 @@
 rule accuControl_switchOff_by_Export
 when Item se4ACPowerExport received update
 then
-  logWarn("AC","Export: {} Load state: {}, charging: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state)
-  if (ESP8266AccuLoadState.state > 30 && se4ACPowerExport.state <= 0 && ESP8266_REL1.state == ON){
-    logWarn("AC","no export - switching charging off")
+  //logWarn("ACE1","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
+  if (ESP8266AccuLoadState.state > 30 && se4ACPowerExport.state <= 0 && ESP8266_REL1.state != OFF){
+    logWarn("ACE1","no export - switching charging off")
     sendTelegram("bot1", "Солнце не светит, отрубаем зарядку.") 
     postUpdate(ESP8266_REL1,OFF)
   }
 end
 
 rule accuControl_switchOff_by_LoadState
-when Item ESP8266AccuLoadState received update
+when Item ESP8266AccuLoadState changed
 then
-  logWarn("AC","Load state: {}, charging: {}", ESP8266AccuLoadState.state,ESP8266_REL1.state)
-  if (ESP8266AccuLoadState.state >= 91 && ESP8266_REL1.state==ON){
-    logWarn("AC","accu full - switching charging off")
+  //logWarn("ACL1","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
+  if (ESP8266AccuLoadState.state >= 95 && ESP8266_REL1.state!=OFF){
+    logWarn("ACL1","accu full - switching charging off")
     sendTelegram("bot1", "Аккум заряжен, отрубаем зарядку.")
     postUpdate(ESP8266_REL1,OFF)
   }
 end
 
-
 rule accuControl_switchOn_by_Export
 when Item se4ACPowerExport received update
 then
-  logWarn("AC","Export: {} Load state: {}, charging: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state)
-  if (ESP8266AccuLoadState.state < 60 && se4ACPowerExport.state >= 250 && ESP8266_REL1.state == OFF){
-    logWarn("AC","exporting, switching charging on")
+  //logWarn("ACE2","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
+  if (ESP8266AccuLoadState.state < 80 && se4ACPowerExport.state > 200 && ESP8266_REL1.state != ON){
+    logWarn("ACE2","exporting, switching charging on")
     sendTelegram("bot1", "Солнце светит, заряжаемся.")
     postUpdate(ESP8266_REL1,ON)
   }
 end
 
-
-
 rule accuControl_switchOn_by_LoadState
-when Item ESP8266AccuLoadState received update
+when Item ESP8266AccuLoadState changed
 then
-  logWarn("AC","Load state: {}, charging: {}", ESP8266AccuLoadState.state,ESP8266_REL1.state)
-  if (ESP8266AccuLoadState.state <10 && ESP8266_REL1.state==OFF){
-    logWarn("AC","accu near empty - switching charging on")
+  logWarn("ACL2","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
+  if (ESP8266AccuLoadState.state <10 && ESP8266_REL1.state!=ON){
+    logWarn("ACL2","accu near empty - switching charging on")
     sendTelegram("bot1", "Аккум почти пустой, врубаем зарядку.")
     postUpdate(ESP8266_REL1,ON)
   }
 end
 
-
+rule accuControl_gridOnOff_by_Export
+when Item se4ACPowerExport changed
+then
+  //logWarn("ACG1","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
+  if (se4ACPowerExport.state >250 && ESP8266_REL2.state!=ON){
+    logWarn("ACG1","export is there, going on grid.")
+    sendTelegram("bot1", "Солнце светит, питаемся от сети.")
+    postUpdate(ESP8266_REL2,ON)
+  } else if(ESP8266_REL2.state!=OFF && se4ACPowerExport.state <0){
+    logWarn("ACG1","no export, switching to battery.")
+    sendTelegram("bot1", "Солнце не светит, питаемся от аккума.")
+    postUpdate(ESP8266_REL2,OFF)
+  }
+end
 

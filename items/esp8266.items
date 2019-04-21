@@ -52,6 +52,6 @@ Number ESP8266Voltage37 "AM voltage 37 [%.2f]" (esp8266)
 Number ESP8266Voltage38 "AM voltage 38 [%.2f]" (esp8266)
 
 
-Switch ESP8266_REL1 "Loader (REL1)"
-Switch ESP8266_REL2 "...... (REL2)"
-Switch ESP8266_REL3 "...... (REL3)"
+Switch ESP8266_REL1 "Loader  (REL1)"
+Switch ESP8266_REL2 "On Grid (REL2)"
+Switch ESP8266_REL3 "......  (REL3)"
