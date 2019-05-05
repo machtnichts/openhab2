@@ -1,4 +1,4 @@
-sitemap our_home label="Our Home Gr" {
+sitemap our_home_gr label="Our Home Gr" {
   Frame label="Power data" {
     Text item=se4ACPowerProduction
     Text item=se4ACPowerConsumption
