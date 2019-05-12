@@ -19,8 +19,10 @@ sitemap our_home label="Our Home" {
     Text item=ESP8266VoltageCell3
     Text item=ESP8266VoltageCell4
 
+    Switch item=ESP8266_MAN_CTL
     Switch item=ESP8266_REL1
     Switch item=ESP8266_REL2
+    
   }
 
 
