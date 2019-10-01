@@ -36,6 +36,10 @@ Number se4DCVoltageSF_int       "DC Voltage SF [%d]" (s4int) { modbus="se4ACPowe
 Number se4DCPowerProduction_int   "DC Power production (int) [%d Watt]" (s4int) { modbus="se4ACPower2:28" }
 Number se4DCPowerProductionSF_int "DC Power production SF [%d]" (s4int) { modbus="se4ACPower2:29" }
 
+Number se4HeatSinkTemp_int   "Heat Sink Temp (int) [%d]" (s4int) { modbus="se4ACPower2:32" }
+Number se4HeatSinkTempSF_int "Heat Sink Temp SF [%d]" (s4int) { modbus="se4ACPower2:35" }
+Number se4InverterState_int   "Inverter state (int) [%d]" (s4int) { modbus="se4ACPower2:36" }
+
 
 Number se4ACVoltageLN "Voltage LN [%.1f V]" (se4int)
 Number se4ACVoltageAN "Voltage AN [%.1f V]" (se4int)
@@ -64,4 +68,7 @@ Number se4ACPowerProduction  "Production [%.2f W]" (se4int)
 Number se4ACPowerConsumption "Consumption [%.2f W]" (se4int)
 Number se4DCPowerProduction  "Production(dc) [%.2f W]" (se4int)
 Number se4DCVoltage          "DC Voltage [%.2f W]" (se4int)
+Number se4HeatSinkTemp       "Heat Sink Temp [%.2f]" (se4int)
+
+
 

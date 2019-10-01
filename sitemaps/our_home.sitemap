@@ -2,6 +2,8 @@ sitemap our_home label="Our Home" {
   Frame label="Power data" {
     Text item=se4ACPowerProduction
     Text item=se4ACPowerConsumption
+    Text item=se4HeatSinkTemp
+    Chart label="Last 24  Hours" item=se4HeatSinkTemp period=24h refresh=600
   }
 
  Frame label="ESP8266 Accu Monitor"{
@@ -19,9 +21,9 @@ sitemap our_home label="Our Home" {
     Text item=ESP8266VoltageCell3
     Text item=ESP8266VoltageCell4
 
-    Switch item=ESP8266_MAN_CTL
     Switch item=ESP8266_REL1
     Switch item=ESP8266_REL2
+    Switch item=ESP8266_MAN_CTL
     
   }
 

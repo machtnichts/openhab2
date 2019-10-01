@@ -3,6 +3,7 @@ Group esp8266
 Group esp8266Temp
 Group esp8266TempHum
 Group esp8266Hum 
+Group AMCellVoltage
 
 
 String ESP8266CO2Source "SZ CO2 source [%s]" (esp8266)
@@ -36,10 +37,10 @@ String ESP8266LastUpdate1 "SZ update [%s]" (esp8266)
 String ESP8266LastUpdate2 "WZ update [%s]" (esp8268)
 String ESP8266LastUpdate3 "AM update [%s]" (esp8268)
 
-Number ESP8266VoltageCell1 "AM cell 1 [%.2f]" (esp8266)
-Number ESP8266VoltageCell2 "AM cell 2 [%.2f]" (esp8266)
-Number ESP8266VoltageCell3 "AM cell 3 [%.2f]" (esp8266)
-Number ESP8266VoltageCell4 "AM cell 4 [%.2f]" (esp8266)
+Number ESP8266VoltageCell1 "AM cell 1 [%.2f]" (esp8266,AMCellVoltage)
+Number ESP8266VoltageCell2 "AM cell 2 [%.2f]" (esp8266,AMCellVoltage)
+Number ESP8266VoltageCell3 "AM cell 3 [%.2f]" (esp8266,AMCellVoltage)
+Number ESP8266VoltageCell4 "AM cell 4 [%.2f]" (esp8266,AMCellVoltage)
 
 
 Number ESP8266Voltage31 "AM voltage 31 [%.2f]" (esp8266)

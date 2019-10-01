@@ -171,6 +171,16 @@ if (se4ACFreqSF_int.state != NULL)
 }
 end
 
+rule se4HeatSinkTemp_xyz
+when Item se4HeatSinkTemp_int received update
+then
+  if (se4HeatSinkTempSF_int.state != NULL){
+    var Double SF = (se4HeatSinkTempSF_int.state as DecimalType).doubleValue
+    if (SF > 32767) SF = SF-(65536).doubleValue
+    var Double result = (se4HeatSinkTemp_int.state as DecimalType).doubleValue * Math::pow(10,SF)
+    postUpdate(se4HeatSinkTemp, result)
+  }
+end
 
 rule se4ACPower_xyz
 when Item se4ACPower_int received update
@@ -183,7 +193,6 @@ if (se4ACPowerSF_int.state != NULL)
   postUpdate(se4ACPower, result)
 }
 end
-
 
 rule se4ACPowerProduction_xyz
 when Item se4ACPowerProduction_int received update

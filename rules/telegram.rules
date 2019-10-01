@@ -18,22 +18,31 @@ rule "Send telegram with Temp"
 when
    Item ESP8266Temperature2 changed
 then
-   
+   logWarn("TG", "1")   
    var calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"))
    var hour = calendar.get(Calendar.HOUR_OF_DAY)
    var temp = ( ESP8266Temperature2.state as Number).doubleValue
    var diff = 1
-
+   logWarn("TG", "2")
    if (TLastTemp.state != NULL){
+     logWarn("TG", "3")
      diff = Math.abs(diff - ( TLastTemp.state as Number).doubleValue)
    }
-
+   logWarn("TG", "4")
    logWarn("TG", "diff: {}  / hour {}", diff, hour)
-   if(hour>=7 && hour<=21 && diff>0.499) 
+   if(hour>=7 && hour<=21)
    {
-     sendTelegram("bot1", "Температура: %sC°", ESP8266Temperature2.state.toString)
-     postUpdate(TLastTemp, temp)
+     logWarn("TG", "4.1")
+     if(diff>0.499) 
+     {
+       logWarn("TG", "5")
+       sendTelegram("bot1", "Температура: %sC°", ESP8266Temperature2.state.toString)
+       logWarn("TG", "5.1")
+       postUpdate(TLastTemp, temp)
+       logWarn("TG", "5.2")
+     }
    }
+   logWarn("TG", "6")
 end
 
 rule "Send battery level"
@@ -58,6 +67,28 @@ then
     }
   }
 end
+
+rule "se4HeatSinkTemp"
+when
+  Item se4HeatSinkTemp changed
+then
+   if (TSLastTelegram2.state==NULL){
+     postUpdate(TSLastTelegram2, 1)
+   }else{
+     var lastUpdate = (TSLastTelegram2.state as Number).longValue
+     var nextUpdate = lastUpdate + (1 * 60*60 * 1000)
+     var currentTS  = new Date().getTime()
+     var shouldUpdate = (nextUpdate<=currentTS)
+     if (shouldUpdate){
+       var Integer tempValue = 0
+       if (se4HeatSinkTemp.state != NULL) tempValue = (se4HeatSinkTemp.state as Number).intValue
+       sendTelegram("bot1", "Inverter heat sink temp: "+ tempValue + ", status: "+se4InverterState_int.state) 
+       postUpdate(TSLastTelegram2, currentTS)
+      
+     }
+  }
+end
+
 
 rule "Send telegram Waschen!"
 when

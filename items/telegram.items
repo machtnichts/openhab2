@@ -1,3 +1,4 @@
 Number TLastTemp "LastTemp Telegram [%d C°]" (telegram)
 Number TSLastTelegram "Timestamp Telegram [%d ms]" (telegram)
+Number TSLastTelegram2 "Timestamp Telegram2 [%d ms]" (telegram)
 Number TLastAccuState "Last sent accu state [%d]" (telegram)

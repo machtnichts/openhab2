@@ -73,6 +73,18 @@ sitemap our_home_gr label="Our Home Gr" {
     Chart label="Last Year"      item=ESP8266AccuLoadState period=Y   refresh=3600 visibility=[ESP8266_Chart_Period==5]
   }
 
+
+  Frame label="ESP8266-3 Cell voltage" {
+    Chart label="Last Hour"      item=AMCellVoltage period=h   refresh=600  visibility=[ESP8266_Chart_Period==0]
+    Chart label="Last 12  Hours" item=AMCellVoltage period=12h refresh=600  visibility=[ESP8266_Chart_Period==1]
+    Chart label="Last day"       item=AMCellVoltage period=D   refresh=900  visibility=[ESP8266_Chart_Period==2]
+    Chart label="Last Week"      item=AMCellVoltage period=W   refresh=3600 visibility=[ESP8266_Chart_Period==3]
+    Chart label="Last Month"     item=AMCellVoltage period=M   refresh=3600 visibility=[ESP8266_Chart_Period==4]
+    Chart label="Last Year"      item=AMCellVoltage period=Y   refresh=3600 visibility=[ESP8266_Chart_Period==5]
+  }
+
+
+
   Frame label="ESP8266-2 Voltage" {
     Chart label="Last Hour"      item=ESP8266Voltage2 period=h   refresh=600  visibility=[ESP8266_Chart_Period==0]
     Chart label="Last 12  Hours" item=ESP8266Voltage2 period=12h refresh=600  visibility=[ESP8266_Chart_Period==1]
