@@ -4,12 +4,37 @@ import java.util.GregorianCalendar
 import java.util.Calendar
 
 
+val rval = [ GenericItem i, Number n |
+  var v = n
+  //logWarn("TSTPRM","1 v = {}",v)
+  if (i.state!=NULL) v = (i.state as Number).intValue 
+  //logWarn("TSTPRM","2 v = {}",v)
+  return v
+]
+
+
+rule testAccuParameters
+  when Item se4ACPowerExport received update
+then
+   logWarn("TSTPRM","---------------------------------")
+  logWarn("TSTPRM","accuLoadOffByMaxSoc         = {}",rval.apply(accuLoadOffByMaxSoc,88))
+  logWarn("TSTPRM","accuLoadOnByMinSoc          = {}",rval.apply(accuLoadOnByMinSoc,66))
+  logWarn("TSTPRM","accuLoadOffOnNoExportMinSoc = {}",rval.apply(accuLoadOffOnNoExportMinSoc,35))
+  logWarn("TSTPRM","accuEmergencyLoadOnByMinSoc = {}",rval.apply(accuEmergencyLoadOnByMinSoc,15))
+  logWarn("TSTPRM","accuEmergencyOngridByMinSoc = {}",rval.apply(accuEmergencyOngridByMinSoc,20))
+  logWarn("TSTPRM","accuLoadOnByMinExport       = {}",rval.apply(accuLoadOnByMinExport,200))
+  logWarn("TSTPRM","accuGridOnByMinExport       = {}",rval.apply(accuGridOnByMinExport,50))
+  logWarn("TSTPRM","accuGridOffOnNoExportMinSoc = {}",rval.apply(accuGridOffOnNoExportMinSoc,25))
+  logWarn("TSTPRM","---------------------------------")
+end
+
+
 rule accuControl_switchOff_by_Export
 when Item se4ACPowerExport received update
 then
  if(ESP8266_MAN_CTL.state!=ON){
   //logWarn("ACE1","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
-  if (ESP8266AccuLoadState.state > 35 && se4ACPowerExport.state <= 0 && ESP8266_REL1.state != OFF){
+  if (ESP8266AccuLoadState.state > rval.apply(accuLoadOffOnNoExportMinSoc,35)&& se4ACPowerExport.state <= 0 && ESP8266_REL1.state != OFF){
     logWarn("ACE1","no export - switching charging off")
     sendTelegram("bot1", "Солнце не светит, отрубаем зарядку.") 
     postUpdate(ESP8266_REL1,OFF)
@@ -18,11 +43,11 @@ then
 end
 
 rule accuControl_switchOff_by_LoadState
-when Item ESP8266AccuLoadState changed
+  when Item ESP8266AccuLoadState changed
 then
  if(ESP8266_MAN_CTL.state!=ON){ 
   //logWarn("ACL1","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
-  if (ESP8266AccuLoadState.state >= 85 && ESP8266_REL1.state!=OFF){
+  if (ESP8266AccuLoadState.state >= rval.apply(accuLoadOffByMaxSoc,88)&& ESP8266_REL1.state!=OFF){
     logWarn("ACL1","accu full - switching charging off")
     sendTelegram("bot1", "Аккум заряжен, отрубаем зарядку.")
     postUpdate(ESP8266_REL1,OFF)
@@ -35,7 +60,7 @@ rule accuControl_switchOn_by_Export
 then
  if(ESP8266_MAN_CTL.state!=ON){
   //logWarn("ACE2","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
-  if (ESP8266AccuLoadState.state < 60 && se4ACPowerExport.state > 200 && ESP8266_REL1.state != ON){
+  if (ESP8266AccuLoadState.state < rval.apply(accuLoadOnByMinSoc,66) && se4ACPowerExport.state > rval.apply(accuLoadOnByMinExport,200) && ESP8266_REL1.state != ON){
     logWarn("ACE2","exporting, switching charging on")
     sendTelegram("bot1", "Солнце светит, заряжаемся.")
     postUpdate(ESP8266_REL1,ON)
@@ -49,9 +74,9 @@ then
  if(ESP8266_MAN_CTL.state!=ON){
    var calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"))
    var hour = calendar.get(Calendar.HOUR_OF_DAY)
-   if (hour > 17){
+   if (hour > 16){
      //logWarn("ACE3","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
-     if (ESP8266AccuLoadState.state < 80 && se4ACPowerExport.state > 180 && ESP8266_REL1.state != ON){
+     if (ESP8266AccuLoadState.state < rval.apply(accuLoadOffByMaxSoc,88) && se4ACPowerExport.state > 180 && ESP8266_REL1.state != ON){
        logWarn("ACE3","exporting, switching charging on")
        sendTelegram("bot1", "Солнце светит, вечер, заряжаемся.")
        postUpdate(ESP8266_REL1,ON)
@@ -65,14 +90,14 @@ rule accuControl_switchOn_by_LoadState
 then
  if(ESP8266_MAN_CTL.state!=ON){
   logWarn("ACL2","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
-  if (ESP8266AccuLoadState.state <=15){
+  if (ESP8266AccuLoadState.state <= rval.apply(accuEmergencyLoadOnByMinSoc,15)){
     if (ESP8266_REL1.state!=ON){
       logWarn("ACL2","accu near empty - switching charging on")
       sendTelegram("bot1", "Аккум почти пустой, врубаем зарядку.")
       postUpdate(ESP8266_REL1,ON)
     }
   }
-  if (ESP8266AccuLoadState.state <=20){
+  if (ESP8266AccuLoadState.state <=rval.apply(accuEmergencyOngridByMinSoc,20)){
     if (ESP8266_REL2.state!=ON){
       logWarn("ACL2","accu near empty - switching to grid")
       sendTelegram("bot1", "Аккум почти пустой, питаемся от сети.")
@@ -85,7 +110,7 @@ end
 rule accuControl_gridOn_by_LoadState
   when Time cron "0 * * ? * *"
 then
-  if (ESP8266AccuLoadState.state <20 && ESP8266_REL2.state!=ON){
+  if (ESP8266AccuLoadState.state <rval.apply(accuEmergencyOngridByMinSoc,20) && ESP8266_REL2.state!=ON){
     logWarn("ACG1","accu near empty - switching to grid")
     sendTelegram("bot1", "Аккум почти пустой, питаемся от сети.")
     postUpdate(ESP8266_REL2,ON)
@@ -98,11 +123,11 @@ rule accuControl_gridOnOff_by_Export
 then
  if(ESP8266_MAN_CTL.state!=ON){
   logWarn("ACG2","Export: {} Load state: {}, charging: {}, on grid: {}",  se4ACPowerExport.state, ESP8266AccuLoadState.state, ESP8266_REL1.state, ESP8266_REL2.state)
-  if (se4ACPowerExport.state >50 && ESP8266_REL2.state!=ON){
+  if (se4ACPowerExport.state >rval.apply(accuGridOnByMinExport,50) && ESP8266_REL2.state!=ON){
     logWarn("ACG2","export is there, going on grid.")
     sendTelegram("bot1", "Солнце светит, питаемся от сети.")
     postUpdate(ESP8266_REL2,ON)
-  } else if(ESP8266_REL2.state!=OFF && se4ACPowerExport.state <1 && ESP8266AccuLoadState.state >25){
+  } else if(ESP8266_REL2.state!=OFF && se4ACPowerExport.state <1 && ESP8266AccuLoadState.state >rval.apply(accuGridOffOnNoExportMinSoc,25)){
     logWarn("ACG2","no export, switching to battery.")
     sendTelegram("bot1", "Солнце не светит, питаемся от аккума.")
     postUpdate(ESP8266_REL2,OFF)

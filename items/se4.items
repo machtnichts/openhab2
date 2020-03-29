@@ -1,44 +1,45 @@
 Group s4int "SolarEdge Inverter (int-Values)"
 
-Number se4ACCurrent_int   "AC current   (int) [%d A]" (s4int) { modbus="se4ACPower:0" }
-Number se4ACCurrentA_int  "AC current A (int) [%d A]" (s4int) { modbus="se4ACPower:1" }
-Number se4ACCurrentB_int  "AC current B (int) [%d A]" (s4int) { modbus="se4ACPower:2" }
-Number se4ACCurrentC_int  "AC current C (int) [%d A]" (s4int) { modbus="se4ACPower:3" }
-Number se4ACCurrentSF_int "AC current SF  [%d]" (s4int) { modbus="se4ACPower:4" }
+Number se4ACCurrent_int   "AC current   (int) [%d A]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACCurrentThing:number" }
+Number se4ACCurrentA_int  "AC current A (int) [%d A]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACCurrentAThing:number"}
+Number se4ACCurrentB_int  "AC current B (int) [%d A]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACCurrentBThing:number" }
+Number se4ACCurrentC_int  "AC current C (int) [%d A]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACCurrentCThing:number" }
+Number se4ACCurrentSF_int "AC current SF  [%d]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACCurrentSFThing:number" }
 
-Number se4ACVoltageLN_int "AC voltage LN  (int) [%d V]" (s4int) { modbus="se4ACPower:5" }
-Number se4ACVoltageAN_int  "AC voltage AN (int) [%d V]" (s4int) { modbus="se4ACPower:6" }
-Number se4ACVoltageBN_int  "AC voltage BN (int) [%d V]" (s4int) { modbus="se4ACPower:7" }
-Number se4ACVoltageCN_int  "AC voltage CN (int) [%d V]" (s4int) { modbus="se4ACPower:8" }
+Number se4ACVoltageLN_int "AC voltage LN  (int) [%d V]" (s4int) {  channel="modbus:data:se4k:se4k_slave1:se4ACVoltageLNThing:number" }
+Number se4ACVoltageAN_int  "AC voltage AN (int) [%d V]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACVoltageANThing:number" }
+Number se4ACVoltageBN_int  "AC voltage BN (int) [%d V]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACVoltageBNThing:number" }
+Number se4ACVoltageCN_int  "AC voltage CN (int) [%d V]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACVoltageCNThing:number" }
 
-Number se4ACVoltageLL_int "AC voltage LL (int) [%d V]" (s4int) { modbus="se4ACPower:9" }
-Number se4ACVoltageAB_int  "AC voltage AB (int) [%d V]" (s4int) { modbus="se4ACPower:10" }
-Number se4ACVoltageBC_int  "AC voltage BC (int) [%d V]" (s4int) { modbus="se4ACPower:11" }
-Number se4ACVoltageCA_int  "AC voltage CA (int) [%d V]" (s4int) { modbus="se4ACPower:12" }
-Number se4ACVoltageSF_int "AC voltage SF  [%d]" (s4int) { modbus="se4ACPower:13" }
+Number se4ACVoltageLL_int "AC voltage LL (int) [%d V]" (s4int)  { channel="modbus:data:se4k:se4k_slave1:se4ACVoltageLLThing:number" }
+Number se4ACVoltageAB_int  "AC voltage AB (int) [%d V]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACVoltageABThing:number" }
+Number se4ACVoltageBC_int  "AC voltage BC (int) [%d V]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACVoltageBCThing:number" }
+Number se4ACVoltageCA_int  "AC voltage CA (int) [%d V]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACVoltageCAThing:number" }
+Number se4ACVoltageSF_int "AC voltage SF  [%d]" (s4int)         { channel="modbus:data:se4k:se4k_slave1:se4ACVoltageSFThing:number" }
 
-Number se4ACFreq_int   "AC Frequency (int) [%d Hz]" (s4int) { modbus="se4ACPower:14" }
-Number se4ACFreqSF_int "AC Frequency SF [%d]" (s4int) { modbus="se4ACPower:15" }
+Number se4ACFreq_int   "AC Frequency (int) [%d Hz]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACFreqThing:number" }
+Number se4ACFreqSF_int "AC Frequency SF [%d]" (s4int)       { channel="modbus:data:se4k:se4k_slave1:se4ACFreqSFThing:number"  }
 
-Number se4ACPower_int   "AC load   (int) [%d W]" (s4int) { modbus="se4ACPower:16" }
-Number se4ACPowerA_int  "AC load A (int) [%d W]" (s4int) { modbus="se4ACPower:17" }
-Number se4ACPowerB_int  "AC load B (int) [%d W]" (s4int) { modbus="se4ACPower:18" }
-Number se4ACPowerC_int  "AC load C (int) [%d W]" (s4int) { modbus="se4ACPower:19" }
-Number se4ACPowerSF_int "AC load SF  [%d]" (s4int) { modbus="se4ACPower:20" }
+Number se4ACPower_int   "AC load   (int) [%d W]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACPowerThing:number" }
+Number se4ACPowerA_int  "AC load A (int) [%d W]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACPowerAThing:number" }
+Number se4ACPowerB_int  "AC load B (int) [%d W]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACPowerBThing:number" }
+Number se4ACPowerC_int  "AC load C (int) [%d W]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACPowerCThing:number" }
+Number se4ACPowerSF_int "AC load SF  [%d]" (s4int) { channel="modbus:data:se4k:se4k_slave1:se4ACPowerSFThing:number" }
 
 
-Number se4ACPowerProduction_int   "AC Power production (int) [%d Watt]" (s4int) { modbus="se4ACPower2:12" }
-Number se4ACPowerProductionSF_int "AC Power production SF [%d]" (s4int) { modbus="se4ACPower2:13" }
+Number se4ACPowerProduction_int   "AC Power production (int) [%d Watt]" (s4int) { channel="modbus:data:se4k:se4k_slave2:se4ACPowerProductionThing:number" }
+Number se4ACPowerProductionSF_int "AC Power production SF [%d]" (s4int) { channel="modbus:data:se4k:se4k_slave2:se4ACPowerProductionSFThing:number" }
 
-Number se4DCVoltage_int         "DC Voltage (int) [%d V]" (s4int) { modbus="se4ACPower2:27" }
-Number se4DCVoltageSF_int       "DC Voltage SF [%d]" (s4int) { modbus="se4ACPower2:28" }
+Number se4DCVoltage_int         "DC Voltage (int) [%d V]" (s4int) { channel="modbus:data:se4k:se4k_slave2:se4DCVoltageThing:number" }
+Number se4DCVoltageSF_int       "DC Voltage SF [%d]" (s4int)      { channel="modbus:data:se4k:se4k_slave2:se4DCVoltageSFThing:number" }
 
-Number se4DCPowerProduction_int   "DC Power production (int) [%d Watt]" (s4int) { modbus="se4ACPower2:28" }
-Number se4DCPowerProductionSF_int "DC Power production SF [%d]" (s4int) { modbus="se4ACPower2:29" }
+Number se4DCPowerProduction_int   "DC Power production (int) [%d Watt]" (s4int) {  channel="modbus:data:se4k:se4k_slave2:se4DCPowerProductionThing:number" }
+Number se4DCPowerProductionSF_int "DC Power production SF [%d]" (s4int)         { channel="modbus:data:se4k:se4k_slave2:se4DCPowerProductionSFThing:number" }
 
-Number se4HeatSinkTemp_int   "Heat Sink Temp (int) [%d]" (s4int) { modbus="se4ACPower2:32" }
-Number se4HeatSinkTempSF_int "Heat Sink Temp SF [%d]" (s4int) { modbus="se4ACPower2:35" }
-Number se4InverterState_int   "Inverter state (int) [%d]" (s4int) { modbus="se4ACPower2:36" }
+Number se4HeatSinkTemp_int   "Heat Sink Temp (int) [%d]" (s4int) { channel="modbus:data:se4k:se4k_slave2:se4TempSinkThing:number" }
+
+Number se4HeatSinkTempSF_int "Heat Sink Temp SF [%d]" (s4int) { channel="modbus:data:se4k:se4k_slave2:se4TempSinkSFThing:number" }
+Number se4InverterState_int   "Inverter state (int) [%d]" (s4int) { channel="modbus:data:se4k:se4k_slave2:se4Status:number" }
 
 
 Number se4ACVoltageLN "Voltage LN [%.1f V]" (se4int)

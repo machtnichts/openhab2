@@ -1,0 +1,50 @@
+Bridge modbus:tcp:se4k [ host="192.168.178.41", port=502, id=1 ] {
+
+    Bridge poller se4k_slave1 [ start=40190, length=36, refresh=10000, type="holding" ] {
+     Thing data se4ACCurrentThing [ readStart="40190", readValueType="int16"]
+     Thing data se4ACCurrentAThing [ readStart="40191", readValueType="int16"]
+     Thing data se4ACCurrentBThing [ readStart="40192", readValueType="int16"]
+     Thing data se4ACCurrentCThing [ readStart="40193", readValueType="int16"]
+     Thing data se4ACCurrentSFThing [ readStart="40194", readValueType="int16"]
+     
+     Thing data se4ACVoltageLNThing [ readStart="40195", readValueType="int16"]     
+     Thing data se4ACVoltageANThing [ readStart="40196", readValueType="int16"]
+     Thing data se4ACVoltageBNThing [ readStart="40197", readValueType="int16"]
+     Thing data se4ACVoltageCNThing [ readStart="40198", readValueType="int16"]
+
+     Thing data se4ACVoltageLLThing [ readStart="40199", readValueType="int16"]
+     Thing data se4ACVoltageABThing [ readStart="40200", readValueType="int16"]
+     Thing data se4ACVoltageBCThing [ readStart="40201", readValueType="int16"]
+     Thing data se4ACVoltageCAThing [ readStart="40202", readValueType="int16"]
+     Thing data se4ACVoltageSFThing [ readStart="40203", readValueType="int16"]     
+
+
+     Thing data se4ACFreqThing [ readStart="40204", readValueType="int16"]
+     Thing data se4ACFreqSFThing [ readStart="40205", readValueType="int16"]
+
+     Thing data se4ACPowerThing [ readStart="40206", readValueType="int16"]
+     Thing data se4ACPowerAThing [ readStart="40207", readValueType="int16"]
+     Thing data se4ACPowerBThing [ readStart="40208", readValueType="int16"]
+     Thing data se4ACPowerCThing [ readStart="40209", readValueType="int16"]
+     Thing data se4ACPowerSFThing [ readStart="40210", readValueType="int16"]
+
+    }
+
+    Bridge poller se4k_slave2 [ start=40071, length=40, refresh=10000, type="holding" ] {
+
+    Thing data se4ACPowerProductionThing [ readStart="40083", readValueType="int16"]
+    Thing data se4ACPowerProductionSFThing [ readStart="40084", readValueType="int16"]
+
+    Thing data se4DCVoltageThing [ readStart="40098", readValueType="int16"]
+    Thing data se4DCVoltageSFThing [ readStart="40099", readValueType="int16"]
+
+    Thing data se4DCPowerProductionThing [ readStart="40100", readValueType="int16"]
+    Thing data se4DCPowerProductionSFThing [ readStart="40101", readValueType="int16"]
+    
+    Thing data se4TempSinkThing [ readStart="40103", readValueType="int16"]
+    Thing data se4TempSinkSFThing [ readStart="40106", readValueType="int16"] 
+     
+    Thing data se4Status          [ readStart="40107", readValueType="int16"]     
+
+    }
+}

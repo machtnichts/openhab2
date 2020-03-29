@@ -1,0 +1,10 @@
+Group accuParameters
+
+Number accuLoadOffByMaxSoc "88 Switch off charging on this SOC[%d%%]" (accuParameters)
+Number accuLoadOffOnNoExportMinSoc "35 Switch off charging on this SOC if no export[%d%%]" (accuParameters)
+Number accuLoadOnByMinSoc "66 Switch on charging on this SOC if export[%d%%]" (accuParameters)
+Number accuEmergencyLoadOnByMinSoc "15 Emergency charging on this SOC [%d%%]" (accuParameters)
+Number accuEmergencyOngridByMinSoc "20 Emergency switch to grid on this SOC [%d%%]" (accuParameters)
+Number accuLoadOnByMinExport "200 Charging allowed on this min export [%d watt]" (accuParameters)
+Number accuGridOnByMinExport "50 Grid on allowed on this min export [%d watt]" (accuParameters)
+Number accuGridOffOnNoExportMinSoc "25 min SOC to allow to go off grid [%d%%]" (accuParameters)

@@ -1,0 +1,12 @@
+sitemap accuControls label="Accu Controls" {
+  Frame label="!!! accu charging parameters !!!" {
+    Setpoint item=accuLoadOffByMaxSoc label="Maximum load state" minValue=70 maxValue=100
+    Setpoint item=accuLoadOffOnNoExportMinSoc label="35 Switch off charging on this SOC if no export" minValue=20 maxValue=100
+    Setpoint item=accuLoadOnByMinSoc label="66 Switch on charging on this SOC if export" minValue=50 maxValue=90
+    Setpoint item=accuEmergencyLoadOnByMinSoc label="15 Emergency charging on this SOC" minValue=5 maxValue=50
+    Setpoint item=accuEmergencyOngridByMinSoc label="20 Emergency switch to grid on this SOC" minValue=5 maxValue=50
+    Setpoint item=accuLoadOnByMinExport label="200 Charging allowed on this min export" minValue=50 maxValue=1000
+    Setpoint item=accuGridOnByMinExport label="50 Grid on allowed on this min export" minValue=10 maxValue=1000
+    Setpoint item=accuGridOffOnNoExportMinSoc label="25 min SOC to allow to go off grid" minValue=20 maxValue=1000
+  }
+}

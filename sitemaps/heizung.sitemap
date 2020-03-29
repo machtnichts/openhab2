@@ -1,0 +1,16 @@
+sitemap heizung label="Prima Klima Heizung" {
+
+  Frame label="ESP8266 sensors"{
+    Text item=ESP8266Temperature2
+    Text item=ESP8266Humidity2
+    Text item=ESP8266Temperature
+    Text item=ESP8266Humidity
+    Text item=ESP8266CO2
+  }
+
+  Frame label="Heizung" {
+    Chart label="Last 24 Hours WZ" item=ESP8266Temperature2 period=24h refresh=600
+    Chart label="Last 24 Hours SZ" item=ESP8266Temperature  period=24h refresh=600
+  }
+
+}

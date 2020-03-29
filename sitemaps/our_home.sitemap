@@ -1,12 +1,18 @@
 sitemap our_home label="Our Home" {
-  Frame label="Power data" {
+
+  Frame label="Power" {
     Text item=se4ACPowerProduction
     Text item=se4ACPowerConsumption
     Text item=se4HeatSinkTemp
-    Chart label="Last 24  Hours" item=se4HeatSinkTemp period=24h refresh=600
   }
 
- Frame label="ESP8266 Accu Monitor"{
+  Frame label="Home" {
+    Text item=ESP8266Temperature2
+    Text item=ESP8266Temperature
+    Text item=ESP8266CO2
+  }
+
+  Frame label="ESP8266 Accu Monitor"{
     Text item=ESP8266Temperature3
     Text item=ESP8266Humidity3
     Text item=ESP8266Voltage3
@@ -24,7 +30,7 @@ sitemap our_home label="Our Home" {
     Switch item=ESP8266_REL1
     Switch item=ESP8266_REL2
     Switch item=ESP8266_MAN_CTL
-    
+    Switch item=ESP8266_GAS_ZHLR_IMPULSE
   }
 
 

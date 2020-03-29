@@ -90,6 +90,16 @@ then
 end
 
 
+rule "Send telegram gas"
+  when Item ESP8266_GAS_ZHLR_IMPULSE received update
+then
+   logWarn("GZ", "42")
+
+   var Double newCounterState = 0.1
+   if (GasZaehler.state!=NULL) newCounterState = newCounterState + (GasZaehler.state as Number).doubleValue
+   postUpdate(GasZaehler, newCounterState) 
+end
+
 rule "Send telegram Waschen!"
 when
    Item se4ACPowerExport changed 
