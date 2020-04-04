@@ -9,6 +9,7 @@ Strategies {
 
 Items {
         accuParameters* : strategy = everyChange, restoreOnStartup
+        accuStatistics* : strategy = everyChange, everyMinute, restoreOnStartup
         GasZaehler : strategy = everyChange, restoreOnStartup	 
 	se4ACPower,se4ACPowerA,se4ACPowerB,se4ACPowerC,se4ACPowerExport,se4ACPowerImport,se4ACPowerConsumption,se4ACPowerProduction, se4HeatSinkTemp, esp8266* : strategy = everyMinute
 }

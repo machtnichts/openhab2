@@ -22,18 +22,18 @@ then
    var calendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Berlin"))
    var hour = calendar.get(Calendar.HOUR_OF_DAY)
    var temp = ( ESP8266Temperature2.state as Number).doubleValue
-   var diff = 1
+   var tempDiff = 1
    logWarn("TG", "2")
    if (TLastTemp.state != NULL){
      logWarn("TG", "3")
-     diff = Math.abs(diff - ( TLastTemp.state as Number).doubleValue)
+     tempDiff = Math.abs(temp - ( TLastTemp.state as Number).doubleValue)
    }
    logWarn("TG", "4")
-   logWarn("TG", "diff: {}  / hour {}", diff, hour)
+   logWarn("TG", "diff: {}  / hour {}", tempDiff, hour)
    if(hour>=7 && hour<=21)
    {
-     logWarn("TG", "4.1")
-     if(diff>0.499) 
+     logWarn("TG", "4.1 : {}", tempDiff)
+     if((tempDiff as Number).doubleValue > 0.499) 
      {
        logWarn("TG", "5")
        sendTelegram("bot1", "Температура: %sC°", ESP8266Temperature2.state.toString)

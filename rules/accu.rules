@@ -3,7 +3,6 @@ import java.util.TimeZone
 import java.util.GregorianCalendar
 import java.util.Calendar
 
-
 val rval = [ GenericItem i, Number n |
   var v = n
   //logWarn("TSTPRM","1 v = {}",v)
@@ -13,21 +12,66 @@ val rval = [ GenericItem i, Number n |
 ]
 
 
-rule testAccuParameters
-  when Item se4ACPowerExport received update
+//rule testAccuParameters
+//  when Item se4ACPowerExport received update
+//then
+//   logWarn("TSTPRM","---------------------------------")
+//  logWarn("TSTPRM","accuLoadOffByMaxSoc         = {}",rval.apply(accuLoadOffByMaxSoc,88))
+//  logWarn("TSTPRM","accuLoadOnByMinSoc          = {}",rval.apply(accuLoadOnByMinSoc,66))
+//  logWarn("TSTPRM","accuLoadOffOnNoExportMinSoc = {}",rval.apply(accuLoadOffOnNoExportMinSoc,35))
+//  logWarn("TSTPRM","accuEmergencyLoadOnByMinSoc = {}",rval.apply(accuEmergencyLoadOnByMinSoc,15))
+//  logWarn("TSTPRM","accuEmergencyOngridByMinSoc = {}",rval.apply(accuEmergencyOngridByMinSoc,20))
+//  logWarn("TSTPRM","accuLoadOnByMinExport       = {}",rval.apply(accuLoadOnByMinExport,200))
+//  logWarn("TSTPRM","accuGridOnByMinExport       = {}",rval.apply(accuGridOnByMinExport,50))
+//  logWarn("TSTPRM","accuGridOffOnNoExportMinSoc = {}",rval.apply(accuGridOffOnNoExportMinSoc,25))
+//  logWarn("TSTPRM","---------------------------------")
+//end
+
+rule monitor_export_1
+when Item se4ACPowerExport changed
 then
-   logWarn("TSTPRM","---------------------------------")
-  logWarn("TSTPRM","accuLoadOffByMaxSoc         = {}",rval.apply(accuLoadOffByMaxSoc,88))
-  logWarn("TSTPRM","accuLoadOnByMinSoc          = {}",rval.apply(accuLoadOnByMinSoc,66))
-  logWarn("TSTPRM","accuLoadOffOnNoExportMinSoc = {}",rval.apply(accuLoadOffOnNoExportMinSoc,35))
-  logWarn("TSTPRM","accuEmergencyLoadOnByMinSoc = {}",rval.apply(accuEmergencyLoadOnByMinSoc,15))
-  logWarn("TSTPRM","accuEmergencyOngridByMinSoc = {}",rval.apply(accuEmergencyOngridByMinSoc,20))
-  logWarn("TSTPRM","accuLoadOnByMinExport       = {}",rval.apply(accuLoadOnByMinExport,200))
-  logWarn("TSTPRM","accuGridOnByMinExport       = {}",rval.apply(accuGridOnByMinExport,50))
-  logWarn("TSTPRM","accuGridOffOnNoExportMinSoc = {}",rval.apply(accuGridOffOnNoExportMinSoc,25))
-  logWarn("TSTPRM","---------------------------------")
+  var vExport = rval.apply(se4ACPowerExport,0)
+  var xState = ON
+  if (vExport > 0){
+    xState = OFF
+  } 
+//  logWarn("ACSTAT","export: {} importing state: {}", vExport, xState)
+  postUpdate(switchGridImport,xState)
 end
 
+rule monitor_export_1a
+when Item se4ACPowerImport changed
+then
+  var vImport = rval.apply(se4ACPowerImport,0)
+  var xState = OFF
+  if (vImport > 0){
+    xState = ON
+  }
+//  logWarn("ACSTAT","import: {} importing state: {}", vImport, xState)
+  postUpdate(switchGridImport,xState)
+end
+
+rule monitor_export_2
+when Item ESP8266_REL1 received update
+then
+  postUpdate(switchIsLoading,ESP8266_REL1.state)
+end
+
+rule monitor_export_3
+when Item ESP8266_REL2 received update
+then
+  postUpdate(switchIsOnGrid,ESP8266_REL2.state)
+end
+
+rule monitor_export_4
+when Item switchGridImport received update
+then
+  var xState = OFF
+  if(switchGridImport.state==ON && (switchIsLoading.state==ON || switchIsOnGrid.state==ON)){
+    xState = ON
+  } 
+  postUpdate(switchAccuIsOnGrid,xState)
+end
 
 rule accuControl_switchOff_by_Export
 when Item se4ACPowerExport received update

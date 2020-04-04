@@ -8,3 +8,14 @@ Number accuEmergencyOngridByMinSoc "20 Emergency switch to grid on this SOC [%d%
 Number accuLoadOnByMinExport "200 Charging allowed on this min export [%d watt]" (accuParameters)
 Number accuGridOnByMinExport "50 Grid on allowed on this min export [%d watt]" (accuParameters)
 Number accuGridOffOnNoExportMinSoc "25 min SOC to allow to go off grid [%d%%]" (accuParameters)
+
+Group accuStatistics
+
+Number onGridTimeCounter "time accu/system  on grid (bad) [%d ms]" (accuStatistics)
+Number onAccuTimeCounter "time accu/system off grid (good) [%d ms]" (accuStatistics)
+Number percentSaveTimeCounter "prevented energy in % of time [%d%%]" (accuStatistics)
+DateTime accuStatsTimestamp "timestamp of last state change [%s]" (accuStatistics)
+Switch switchGridImport "importing energy from grid" (accuStatistics)
+Switch switchIsLoading "loading accu" (accuStatistics)
+Switch switchIsOnGrid  "network is running on grid" (accuStatistics)
+Switch switchAccuIsOnGrid "accu is running on grid" (accuStatistics)
