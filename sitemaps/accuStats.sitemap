@@ -1,0 +1,56 @@
+sitemap accuStats label="Accu Statistics" {
+
+ Frame label="Stats" {
+   Text item=onGridTimeCounter
+   Text item=onAccuTimeCounter
+   Text item=percentSaveTimeCounter
+   Text item=accuStatsTimestamp
+   Switch item=switchGridImport
+   Switch item=switchIsLoading
+   Switch item=switchIsOnGrid
+   Switch item=switchAccuIsOnGrid
+ }
+ 
+  
+ Frame label="switches 1"  {
+   Switch item=ESP8266_Chart_Period label="Chart Period" mappings=[0="Hour", 1="4 Hours", 2="8Hours", 3="12 Hours", 4="Day"]
+ }
+
+ Frame label="switches 2"  {
+   Switch item=ESP8266_Chart_Period label="Chart Period" mappings=[5="2 Days", 6="3 Days", 7="Week", 8="2 Weeks", 9="Month", 10="2 Months", 11="4 Months", 12="Year"]
+ }
+
+
+ Frame label="Importing energy from grid state" {
+    Chart label="Last Hour"      item=switchGridImport period=h   refresh=600  visibility=[ESP8266_Chart_Period==0]
+    Chart label="Last 4H"        item=switchGridImport period=4h  refresh=600  visibility=[ESP8266_Chart_Period==1]
+    Chart label="Last 8H"        item=switchGridImport period=8h  refresh=600  visibility=[ESP8266_Chart_Period==2]
+    Chart label="Last 12H"       item=switchGridImport period=12h refresh=600  visibility=[ESP8266_Chart_Period==3]
+    Chart label="Last day"       item=switchGridImport period=D   refresh=600  visibility=[ESP8266_Chart_Period==4]
+    Chart label="Last 2d"        item=switchGridImport period=2D  refresh=600  visibility=[ESP8266_Chart_Period==5]
+    Chart label="Last 3d"        item=switchGridImport period=3D  refresh=600  visibility=[ESP8266_Chart_Period==6]
+    Chart label="Last Week"      item=switchGridImport period=W   refresh=600  visibility=[ESP8266_Chart_Period==7]
+    Chart label="Last 2W"        item=switchGridImport period=2W  refresh=600  visibility=[ESP8266_Chart_Period==8]
+    Chart label="Last Month"     item=switchGridImport period=M   refresh=600  visibility=[ESP8266_Chart_Period==9]
+    Chart label="Last 2M"        item=switchGridImport period=2M  refresh=600  visibility=[ESP8266_Chart_Period==10]
+    Chart label="Last 4M"        item=switchGridImport period=4M  refresh=600  visibility=[ESP8266_Chart_Period==11]
+    Chart label="Last Year"      item=switchGridImport period=Y   refresh=600  visibility=[ESP8266_Chart_Period==12]
+  }
+
+ Frame label="Fritzbox uses grid import state - :(" {
+    Chart label="Last Hour"      item=switchAccuIsOnGrid period=h   refresh=600  visibility=[ESP8266_Chart_Period==0]
+    Chart label="Last 4H"        item=switchAccuIsOnGrid period=4h  refresh=600  visibility=[ESP8266_Chart_Period==1]
+    Chart label="Last 8H"        item=switchAccuIsOnGrid period=8h  refresh=600  visibility=[ESP8266_Chart_Period==2]
+    Chart label="Last 12H"       item=switchAccuIsOnGrid period=12h refresh=600  visibility=[ESP8266_Chart_Period==3]
+    Chart label="Last day"       item=switchAccuIsOnGrid period=D   refresh=600  visibility=[ESP8266_Chart_Period==4]
+    Chart label="Last 2d"        item=switchAccuIsOnGrid period=2D  refresh=600  visibility=[ESP8266_Chart_Period==5]
+    Chart label="Last 3d"        item=switchAccuIsOnGrid period=3D  refresh=600  visibility=[ESP8266_Chart_Period==6]
+    Chart label="Last Week"      item=switchAccuIsOnGrid period=W   refresh=600  visibility=[ESP8266_Chart_Period==7]
+    Chart label="Last 2W"        item=switchAccuIsOnGrid period=2W  refresh=600  visibility=[ESP8266_Chart_Period==8]
+    Chart label="Last Month"     item=switchAccuIsOnGrid period=M   refresh=600  visibility=[ESP8266_Chart_Period==9]
+    Chart label="Last 2M"        item=switchAccuIsOnGrid period=2M  refresh=600  visibility=[ESP8266_Chart_Period==10]
+    Chart label="Last 4M"        item=switchAccuIsOnGrid period=4M  refresh=600  visibility=[ESP8266_Chart_Period==11]
+    Chart label="Last Year"      item=switchAccuIsOnGrid period=Y   refresh=600  visibility=[ESP8266_Chart_Period==12]
+  }
+  
+}

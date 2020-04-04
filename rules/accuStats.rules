@@ -1,0 +1,47 @@
+val longVal = [ GenericItem i, Number n |
+  var v = n
+  if (i.state!=NULL) v = (i.state as Number).longValue
+  //logWarn("ACSTAT","longValue: {}",v)
+  return v
+]
+
+rule monitor_import_1
+when Item switchAccuIsOnGrid changed
+then
+  val newState = switchAccuIsOnGrid.state
+  val timestampState = accuStatsTimestamp.state
+  logWarn("ACSTAT", "!!!GRID USAGE!!!: {} -> {}",previousState.toString, newState.toString)
+
+  if(timestampState!=NULL){
+//    logWarn("ACSTAT","MI1_1")
+    if(previousState!=newState){
+//      logWarn("ACSTAT","MI1_2")
+      var duration = now.millis - (timestampState as DateTimeType).zonedDateTime.toInstant.toEpochMilli
+//      logWarn("ACSTAT","Duration: {}",duration)
+      if(previousState==OFF){
+        //logWarn("ACSTAT","MI1_3: von OFF auf ON: d.h. wir waren ok, jetzt auf dem netz=> onAccu Hochzählen!!!")
+        var x = longVal.apply(onAccuTimeCounter,0)+duration
+        //logWarn("ACSTAT","OFF GRID OVERALL Duration {}",x)
+        postUpdate(onAccuTimeCounter,x)
+      } else if (previousState==ON){
+        //logWarn("ACSTAT","MI1_4: von ON auf OFF: d.h. wir waren NICHT ok, jetzt auf dem Accu=> onGrid Hochzählen!!!")
+        var x = longVal.apply(onGridTimeCounter,0)+duration
+        //logWarn("ACSTAT","ON GRID OVERALL Duration {}",x)
+        postUpdate(onGridTimeCounter,x)
+      }
+      val xOnGrid = longVal.apply(onGridTimeCounter,1)
+      val xOnAccu = longVal.apply(onAccuTimeCounter,0)
+      val wholeRuntime = xOnGrid+xOnAccu
+      var percentage = (100 * xOnAccu) / wholeRuntime
+      logWarn("ACSTAT","onGrid: {} onAccu: {} wrntme: {} percnt: {}",xOnGrid,xOnAccu,wholeRuntime,percentage)
+      postUpdate(percentSaveTimeCounter,percentage)
+      postUpdate(accuStatsTimestamp,new DateTimeType(now.toString))
+    }
+  } else {
+    var x = new DateTimeType(now.toString)
+    logWarn("ACSTAT","first state change - init timestamp with {}",x)
+    postUpdate(accuStatsTimestamp,x)
+  }
+  sendTelegram("bot1", "Accu/Grid state changed: %s -> %s", previousState.toString,newState.toString) 
+end
+
