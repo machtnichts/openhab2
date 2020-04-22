@@ -1,0 +1,25 @@
+sitemap multi label="Multimeter" {
+
+  Frame label="Multimeter Power"{
+    Text item=MM_PWR
+  }
+
+  Frame label="Multimeter"{
+    Text item=MM_C0
+    Text item=MM_C1
+    Text item=MM_C2
+    Text item=MM_C3
+    Text item=MM_C4
+    Text item=MM_C5
+    Text item=MM_C6
+    Text item=MM_C7
+    Text item=MM_C8
+    Text item=MM_C9
+    Text item=MM_C10
+    Text item=MM_C11
+    Text item=MM_C12
+    Text item=MM_C13
+    Text item=MM_C14
+    Text item=MM_C15
+  }
+}

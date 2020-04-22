@@ -4,7 +4,8 @@ Group esp8266Temp
 Group esp8266TempHum
 Group esp8266Hum 
 Group AMCellVoltage
-
+Group espMultimeter
+Group CO2
 
 String ESP8266CO2Source "SZ CO2 source [%s]" (esp8266)
 Number ESP8266TS "SZ timestamp [%d ms]" (esp8266)
@@ -14,7 +15,7 @@ String ESP8266Logger31 "AM 1 [%s]" (esp8266)
 String ESP8266Logger32 "AM 2 [%s]" (esp8266)
 
 
-Number ESP8266CO2 "SZ CO2 [%d ppm]" (esp8266,esp8266ChartItems)
+Number ESP8266CO2 "SZ CO2 [%d ppm]" (esp8266,esp8266ChartItems, CO2)
 
 Number ESP8266Humidity "SZ humidity [%.1f]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Hum)
 Number ESP8266Temperature "SZ temp [%.1f C]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Temp)
@@ -60,4 +61,28 @@ Switch ESP8266_MAN_CTL "Manual Control"
 Switch ESP8266_GAS_ZHLR_IMPULSE "Gaszähler Impuls"
 
 Number GasZaehler "Gas m^3 [%.2f]" (esp8266)
+
+Number MM_C0 "Multimeter C0 [%.3fv]" (espMultimeter)
+Number MM_C1 "Multimeter C1 [%.3fv]" (espMultimeter)
+Number MM_C2 "Multimeter C2 [%.3fv]" (espMultimeter)
+Number MM_C3 "Multimeter C3 [%.3fv]" (espMultimeter)
+Number MM_C4 "Multimeter C4 [%.3fv]" (espMultimeter)
+Number MM_C5 "Multimeter C5 [%.3f]" (espMultimeter)
+Number MM_C6 "Multimeter C6 [%.3f]" (espMultimeter)
+Number MM_C7 "Multimeter C7 [%.3f]" (espMultimeter)
+Number MM_C8 "Multimeter C8 [%.3f]" (espMultimeter)
+Number MM_C9 "Multimeter C9 [%.3f]" (espMultimeter)
+Number MM_C10 "Multimeter C10 [%.3f]" (espMultimeter)
+Number MM_C11 "Multimeter C11 [%.3f]" (espMultimeter)
+Number MM_C12 "Multimeter C12 [%.3f]" (espMultimeter)
+Number MM_C13 "Multimeter C13 [%.3f]" (espMultimeter)
+Number MM_C14 "Multimeter C14 [% 3f]" (espMultimeter)
+Number MM_C15 "Multimeter C15 [%.3f]" (espMultimeter)
+Number MM_PWR "Multimeter Power [%.3fw]" (espMultimeter)
+
+Number MM_D5   "Multimeter C02 D5 [%dppm]" (espMultimeter,CO2)
+Number MM_D6   "Multimeter CO2 D6 [%dppm]" (espMultimeter,CO2)
+Number MM_D7   "Multimeter CO2 D7 [%d]ppm" (espMultimeter,CO2)
+String MM_LOG1 "MM LOG1 [%s]" (espMultimeter)
+String MM_LOG2 "MM LOG2 [%s]" (espMultimeter)
 
