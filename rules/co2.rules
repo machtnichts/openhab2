@@ -1,0 +1,19 @@
+rule CO2D5CORR
+when Item MM_D5 received update
+then
+  if (MM_D5_crfactor.state != NULL)
+  {
+    var Integer result = (MM_D5.state as DecimalType).intValue - (MM_D5_crfactor.state as DecimalType).intValue
+    postUpdate(MM_D5_fixed, result)
+  }
+end
+
+rule CO2SZCORR
+when Item ESP8266CO2 received update
+then
+  if (ESP8266CO2_crfactor.state != NULL)
+  {
+    var Integer result = (ESP8266CO2.state as DecimalType).intValue - (ESP8266CO2_crfactor.state as DecimalType).intValue
+    postUpdate(ESP8266CO2_fixed, result)
+  }
+end

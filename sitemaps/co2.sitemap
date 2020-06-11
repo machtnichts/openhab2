@@ -2,13 +2,20 @@ sitemap co2 label="CO2" {
 
   Frame label="CO2 test"{
     Text item=MM_D5
+    Text item=MM_D5_fixed
     Text item=MM_D6
     Text item=MM_D7
     Text item=ESP8266CO2
+    Text item=ESP8266CO2_fixed
     Text item=MM_LOG1
     Text item=MM_LOG2
   }
-
+ 
+  Frame label="CO2 correction values" {
+    Setpoint item=MM_D5_crfactor label="MM D5 CO2 corr. value [%dppm]" minValue=-1000 maxValue=1000 step=5
+    Setpoint item=ESP8266CO2_crfactor label="MM D5 CO2 corr. value [%dppm]" minValue=-1000 maxValue=1000 step=5
+  }
+  
   Frame label="CO2" {
     Chart label="Last Hour"   item=CO2 period=h   refresh=600
     Chart label="Last 12H"    item=CO2 period=12h refresh=600
