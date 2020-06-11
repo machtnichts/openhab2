@@ -1,0 +1,8 @@
+Group cpuSensors
+
+String cpuCoreTempRawString "[%s]" {channel="exec:command:cpusensors:output"}
+Number cpuCore0Temp "core0 [%d c°]" (cpuSensors)
+Number cpuCore1Temp "core1 [%d c°]" (cpuSensors)
+Number cpuCore2Temp "core2 [%d c°]" (cpuSensors)
+Number cpuCore3Temp "core3 [%d c°]" (cpuSensors)
+

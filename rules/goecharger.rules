@@ -1,0 +1,40 @@
+import java.math.Math
+
+val rval = [ GenericItem i, Number n |
+  var v = n
+  //logWarn("TSTPRM","1 v = {}",v)
+  if (i.state!=NULL) v = (i.state as Number).intValue 
+  //logWarn("TSTPRM","2 v = {}",v)
+  return v
+]
+
+
+rule controlGoECharger 
+  when Item se4ACPowerExport received update
+then
+ if(GoEChargerFollowPV.state==ON){
+   val availablePower = rval.apply(se4ACPowerExport,0)
+   val currentVoltage = rval.apply(GoEChargerVoltageL1,230)
+   val phaseCount = rval.apply(GoEChargerPhases,0)
+    
+   if(phaseCount > 0
+   {
+     logWarn("GOEC","pv loading is on, calculating available power {}, voltage ",  availablePower, currentVoltage)
+     var maxCurrent = availablePower / phaseCount / currentVoltage
+     logWarn("GOEC","pv loading is on, calculating available power {}, voltage {}, maxCurrent {}",  availablePower, currentVoltage, maxCurrent)
+     if (6 > maxCurrent) {
+       if(GoEChargerPVOnly==ON){
+         maxCurrent = 0
+       } else {
+         maxCurrent = 6
+       }
+     }
+     maxCurrent = (maxCurrent as Number).intValue
+     logWarn("GOEC","setting maxCurrent {}", maxCurrent)
+     GoEChargerMaxCurrent.sendCommand(maxCurrent)
+   } else {
+   }
+   
+ }
+end
+

@@ -1,0 +1,1 @@
+Thing exec:command:cpusensors [command="sensors -j coretemp-isa-0000", interval=15, timeout=5]

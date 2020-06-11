@@ -1,0 +1,15 @@
+
+rule cpuSensors
+when Item cpuCoreTempRawString received update
+then
+  var jsonString = cpuCoreTempRawString.state.toString
+  var core0 = transform("JSONPATH","$.coretemp-isa-0000['Core 0'].temp2_input",jsonString)
+  var core1 = transform("JSONPATH","$.coretemp-isa-0000['Core 1'].temp3_input",jsonString)
+  var core2 = transform("JSONPATH","$.coretemp-isa-0000['Core 2'].temp4_input",jsonString)
+  var core3 = transform("JSONPATH","$.coretemp-isa-0000['Core 3'].temp5_input",jsonString)
+  postUpdate(cpuCore0Temp,core0)
+  postUpdate(cpuCore1Temp,core1)
+  postUpdate(cpuCore2Temp,core2)
+  postUpdate(cpuCore3Temp,core3)
+end
+

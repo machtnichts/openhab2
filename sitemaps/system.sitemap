@@ -1,0 +1,18 @@
+sitemap system label="beelink-t4" {
+
+  Frame label="Core Temp"{
+    Text item=cpuCore0Temp
+    Text item=cpuCore1Temp
+    Text item=cpuCore2Temp
+    Text item=cpuCore3Temp
+  }
+ 
+  Frame label="Grafix" {
+    Chart label="Last Hour"   item=cpuSensors period=h   refresh=600
+    Chart label="LasT 12H"    item=cpuSensors period=12h refresh=600
+    Chart label="Last day"    item=cpuSensors period=D   refresh=600
+    Chart label="Last Week"   item=cpuSensors period=W   refresh=600
+    Chart label="Last Month"  item=cpuSensors period=M   refresh=600
+  }
+
+}
