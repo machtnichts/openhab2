@@ -120,6 +120,7 @@ else
   postUpdate(se4ACPowerImport, 0)
   postUpdate(se4ACPowerExport, result)
 }
+postUpdate(se4ACPowerGridFlow,intValue)
 }
 end
 

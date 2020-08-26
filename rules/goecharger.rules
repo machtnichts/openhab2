@@ -8,28 +8,69 @@ val rval = [ GenericItem i, Number n |
   return v
 ]
 
+val dval = [ GenericItem i, Number n |
+  var v = n
+  //logWarn("TSTPRM","1 v = {}",v)
+  if (i.state!=NULL) v = (i.state as Number).doubleValue
+  //logWarn("TSTPRM","2 v = {}",v)
+  return v
+]
+
+
+rule controlGoECharger
+  when Item se4ACPowerGridFlow received update
+then
+//  logWarn("GOEC","PWL1: {}",  GoEChargerPowerL1.state)
+//  logWarn("GOEC","PWL2: {}",  GoEChargerPowerL2.state)
+//  logWarn("GOEC","PWL3: {}",  GoEChargerPowerL3.state)
+  val powerAll = dval.apply(GoEChargerPowerL1,0)*1000.0 + dval.apply(GoEChargerPowerL2,0)*1000.0 + dval.apply(GoEChargerPowerL3,0)*1000.0
+//  logWarn("GOEC","PWALL: {}",  powerAll)
+  GoEChargerPower.sendCommand(powerAll)
+end
 
 rule controlGoECharger 
-  when Item se4ACPowerExport received update
+  when Item se4ACPowerGridFlow received update
 then
+   logWarn("GOEC","PWM status: {}",  GoEChargerPwmSignal.state)
+ 
  if(GoEChargerFollowPV.state==ON){
-   val availablePower = rval.apply(se4ACPowerExport,0)
+   var availablePower = rval.apply(se4ACPowerGridFlow,0)
    val currentVoltage = rval.apply(GoEChargerVoltageL1,230)
-   val phaseCount = rval.apply(GoEChargerPhases,0)
-    
-   if(phaseCount > 0
+   val currentPower = (dval.apply(GoEChargerPowerL1,0) + dval.apply(GoEChargerPowerL2,0) + dval.apply(GoEChargerPowerL3,0))*1000
+   logWarn("GOEC","current power {}", currentPower)
+   logWarn("GOEC","current exp/imp {}", availablePower)
+   availablePower = availablePower + currentPower
+   logWarn("GOEC","available power {}", availablePower)
+   var phaseCount = rval.apply(GoEChargerPhases,0)
+   if(phaseCount==0)
+     phaseCount=1
+   logWarn("GOEC","pv phase count {}",  phaseCount)  
+   if(phaseCount > 0)
    {
-     logWarn("GOEC","pv loading is on, calculating available power {}, voltage ",  availablePower, currentVoltage)
      var maxCurrent = availablePower / phaseCount / currentVoltage
      logWarn("GOEC","pv loading is on, calculating available power {}, voltage {}, maxCurrent {}",  availablePower, currentVoltage, maxCurrent)
      if (6 > maxCurrent) {
-       if(GoEChargerPVOnly==ON){
+       logWarn("GOEC","too less power...")
+       if(GoEChargerPVOnly.state==ON){
+         logWarn("GOEC","current to 0")
          maxCurrent = 0
        } else {
+         logWarn("GOEC","limiting to 6a")
          maxCurrent = 6
        }
      }
      maxCurrent = (maxCurrent as Number).intValue
+
+     if (maxCurrent>16)
+       maxCurrent = 16
+
+     if(maxCurrent>0 && GoEChargerAllowCharging.state!=ON){
+       GoEChargerAllowCharging.sendCommand(ON)
+       logWarn("GOEC","switching on loading")
+     }else if(maxCurrent<=0 && GoEChargerAllowCharging.state!=OFF){
+       GoEChargerAllowCharging.sendCommand(OFF)
+       logWarn("GOEC","switching off loading")
+     }
      logWarn("GOEC","setting maxCurrent {}", maxCurrent)
      GoEChargerMaxCurrent.sendCommand(maxCurrent)
    } else {

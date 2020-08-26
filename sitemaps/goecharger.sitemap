@@ -3,10 +3,12 @@ sitemap goecharger label="goecharger" {
   Frame label="control"{
    Switch item=GoEChargerFollowPV
    Switch item=GoEChargerPVOnly
+   Chart label="Last day" item=ecar period=D refresh=600
   }
 
   Frame label="current values"{
     Text item=GoEChargerMaxCurrent
+    Text item=se4ACPowerGridFlow
     Text item=GoEChargerPwmSignal
     Text item=GoEChargerError
     Text item=GoEChargerVoltageL1
@@ -15,6 +17,7 @@ sitemap goecharger label="goecharger" {
     Text item=GoEChargerCurrentL1
     Text item=GoEChargerCurrentL2
     Text item=GoEChargerCurrentL3
+    Text item=GoEChargerPower
     Text item=GoEChargerPowerL1
     Text item=GoEChargerPowerL2
     Text item=GoEChargerPowerL3

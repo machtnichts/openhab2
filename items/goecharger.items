@@ -1,5 +1,5 @@
 
-Number     GoEChargerMaxCurrent                 "Maximum current"                       {channel="goecharger:goe:garage:maxCurrent"}
+Number                     GoEChargerMaxCurrent                 "Maximum current"                       {channel="goecharger:goe:garage:maxCurrent"}
 String                     GoEChargerPwmSignal                  "Pwm signal status"                     {channel="goecharger:goe:garage:pwmSignal"}
 String                     GoEChargerError                      "Error code"                            {channel="goecharger:goe:garage:error"}
 Number:ElectricPotential   GoEChargerVoltageL1                  "Voltage l1"                            {channel="goecharger:goe:garage:voltageL1"}
@@ -20,6 +20,10 @@ Number:ElectricCurrent     GoEChargerCableCurrent               "Cable encoding"
 Number:Temperature         GoEChargerTemperature                "Temperature"                           {channel="goecharger:goe:garage:temperature"}
 String                     GoEChargerFirmware                   "Firmware"                              {channel="goecharger:goe:garage:firmware"}
 String                     GoEChargerAccessConfiguration        "Access configuration"                  {channel="goecharger:goe:garage:accessConfiguration"}
+
+
+Group ecar
+Number                     GoEChargerPower                      "Charging power [%d W]"      (ecar)
 
 Switch                     GoEChargerFollowPV                   "follow PV"
 Switch                     GoEChargerPVOnly                     "use PV only"

@@ -13,7 +13,8 @@ Items {
         CO2* : strategy = everyChange, everyMinute
         cpuSensors*: strategy = everyChange, everyMinute
         GasZaehler : strategy = everyChange, restoreOnStartup	
-        GoEChargerPVOnly: strategy = everyChange, restoreOnStartup
-        GoEChargerFollowPV: strategy = everyChange, restoreOnStartup 
-	se4ACPower,se4ACPowerA,se4ACPowerB,se4ACPowerC,se4ACPowerExport,se4ACPowerImport,se4ACPowerConsumption,se4ACPowerProduction, se4HeatSinkTemp, esp8266* : strategy = everyMinute
+        GoEChargerPVOnly: strategy = everyChange, everyMinute, restoreOnStartup
+        GoEChargerFollowPV: strategy = everyChange, everyMinute, restoreOnStartup 
+	GoEChargerPower : strategy = everyChange, everyMinute, restoreOnStartup
+        se4ACPower,se4ACPowerA,se4ACPowerB,se4ACPowerC,se4ACPowerExport,se4ACPowerImport,se4ACPowerConsumption,se4ACPowerProduction, se4HeatSinkTemp, esp8266* : strategy = everyMinute
 }
