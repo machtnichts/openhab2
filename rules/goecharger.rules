@@ -31,6 +31,9 @@ end
 rule controlGoECharger 
   when Item se4ACPowerGridFlow received update
 then
+
+ if("READY_NO_CAR" != GoEChargerPwmSignal.state.toString){
+ 
    logWarn("GOEC","PWM status: {}",  GoEChargerPwmSignal.state)
  
  if(GoEChargerFollowPV.state==ON){
@@ -77,5 +80,6 @@ then
    }
    
  }
+} 
 end
 
