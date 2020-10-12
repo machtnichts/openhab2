@@ -86,7 +86,6 @@ Number MM_D7   "Multimeter CO2 D7 [%dppm]" (espMultimeter,CO2)
 Number MM_D5_fixed "Multimeter CO2 D5 fixed [%dppm]" (espMultimeter,CO2)
 Number MM_D5_crfactor "Multimeter CO2 D5 corr. value [%dppm]" (esp8266)
 Number ESP8266CO2_fixed "Multimeter CO2 SZ fixed [%dppm]" (espMultimeter,CO2)
-Number ESP8266CO2_crfactor "Multimeter CO2 SZ corr. value [%dppm]" (esp8266)
 String MM_LOG1 "MM LOG1 [%s]" (espMultimeter)
 String MM_LOG2 "MM LOG2 [%s]" (espMultimeter)
 
