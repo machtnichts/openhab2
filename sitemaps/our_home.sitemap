@@ -34,7 +34,6 @@ sitemap our_home label="Our Home" {
     Switch item=ESP8266_REL1
     Switch item=ESP8266_REL2
     Switch item=ESP8266_MAN_CTL
-    Switch item=ESP8266_GAS_ZHLR_IMPULSE
   }
 
 

@@ -56,7 +56,7 @@ Number ESP8266Voltage3 "AM voltage [%.2f]" (esp8266)
 Number ESP8266TS3 "AM timestamp [%d ms]" (esp8266)
 Number ESP8266AccuLoadState "Battery level [%d%%]" (esp8266)
 
-String ESP8266LastUpdate1 "SZ update [%s]" (esp8266)
+String ESP8266LastUpdate1 "Lea last update [%s]" (esp8266)
 String ESP8266LastUpdate2 "WZ update [%s]" (esp8268)
 String ESP8266LastUpdate3 "AM update [%s]" (esp8268)
 

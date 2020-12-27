@@ -29,6 +29,12 @@ then
   GoEChargerPower.sendCommand(powerAll)
 end
 
+rule controlGOEChargeManual
+ when Item GoEChargeCurrent received update
+then
+   GoEChargerMaxSessionCurrent.sendCommand(dval.apply(GoEChargeCurrent,0))
+end
+
 rule controlGoECharger 
   when Item se4ACPowerGridFlow received update
 then
@@ -77,7 +83,7 @@ then
        logWarn("GOEC","switching off loading")
      }
      logWarn("GOEC","setting maxCurrent {}", maxCurrent)
-     GoEChargerMaxCurrent.sendCommand(maxCurrent)
+     GoEChargerMaxSessionCurrent.sendCommand(maxCurrent)
    } else {
    }
    

@@ -3,10 +3,13 @@ sitemap goecharger label="goecharger" {
   Frame label="control"{
    Switch item=GoEChargerFollowPV
    Switch item=GoEChargerPVOnly
+   Switch item=GoEChargerAllowCharging
+   Setpoint item=GoEChargeCurrent label="Charge current [%d A]" minValue=6 maxValue=16 step=1
    Chart label="Last day" item=ecar period=D refresh=600
   }
 
   Frame label="current values"{
+    Text item=GoEChargerMaxSessionCurrent
     Text item=GoEChargerMaxCurrent
     Text item=se4ACPowerGridFlow
     Text item=GoEChargerPower
@@ -26,7 +29,6 @@ sitemap goecharger label="goecharger" {
     Text item=GoEChargerPowerL3
     Text item=GoEChargerPhases
     Text item=GoEChargerSessionChargeEnergyLimit
-    Text item=GoEChargerAllowCharging
     Text item=GoEChargerCableCurrent
     Text item=GoEChargerFirmware     
     Text item=GoEChargerAccessConfiguration

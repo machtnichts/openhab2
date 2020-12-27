@@ -1,4 +1,5 @@
 
+Number                     GoEChargerMaxSessionCurrent          "Maximum session current"               {channel="goecharger:goe:garage:sessionMaxCurrent"}
 Number                     GoEChargerMaxCurrent                 "Maximum current"                       {channel="goecharger:goe:garage:maxCurrent"}
 String                     GoEChargerPwmSignal                  "Pwm signal status"                     {channel="goecharger:goe:garage:pwmSignal"}
 String                     GoEChargerError                      "Error code"                            {channel="goecharger:goe:garage:error"}
@@ -24,6 +25,7 @@ String                     GoEChargerAccessConfiguration        "Access configur
 
 Group ecar
 Number                     GoEChargerPower                      "Charging power [%d W]"      (ecar)
+Number                     GoEChargeCurrent                     "Desired charge current"
 
 Switch                     GoEChargerFollowPV                   "follow PV"
 Switch                     GoEChargerPVOnly                     "use PV only"
