@@ -27,6 +27,34 @@ then
   postUpdate(ESP8266LastUpdate3, sdf.format(new Date))
 end
 
+
+rule es32Timestamp_1
+when Item ESP32CO21 received update
+then
+  var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+  sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"))
+  postUpdate(ESP32LastUpdate1, sdf.format(new Date))
+end
+
+rule es32Timestamp_2
+when Item ESP32CO22 received update
+then
+  var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+  sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"))
+  postUpdate(ESP32LastUpdate2, sdf.format(new Date))
+end
+
+rule es32Timestamp_3
+when Item ESP32CO23 received update
+then
+  var sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+  sdf.setTimeZone(TimeZone.getTimeZone("Europe/Berlin"))
+  postUpdate(ESP32LastUpdate3, sdf.format(new Date))
+end
+
+
+
+
 rule es8266AccuLoadState_3
 when Item ESP8266Voltage3 changed 
 then

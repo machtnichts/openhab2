@@ -3,13 +3,17 @@ sitemap our_home label="Our Home" {
   Frame label="Power" {
     Text item=se4ACPowerProduction
     Text item=se4ACPowerConsumption
-    Text item=se4HeatSinkTemp
   }
 
   Frame label="Home" {
-    Text item=ESP8266Temperature2
-    Text item=ESP8266Temperature
     Text item=ESP8266CO2
+    Text item=ESP8266Temperature
+    Text item=ESP32CO23
+    Text item=ESP32Temperature3
+    Text item=ESP32CO22
+    Text item=ESP32Temperature2
+    Text item=ESP32CO21
+    Text item=ESP32Temperature1
   }
 
   Frame label="ESP8266 Accu Monitor"{
@@ -43,6 +47,25 @@ sitemap our_home label="Our Home" {
     Text item=ESP8266CO2
     Text item=ESP8266LastUpdate2    
     Text item=ESP8266LastUpdate1
-    Text item=ESP8266Logger
+    Text item=ESPi8266Logger
+
+    Text item=ESP32CO21
+    Text item=ESP32Humidity1
+    Text item=ESP32Temperature1
+    Text item=ESP32LastUpdate1
+    Text item=ESP32Logger1
+    
+    Text item=ESP32CO22
+    Text item=ESP32Humidity2
+    Text item=ESP32Temperature2
+    Text item=ESP32LastUpdate2
+    Text item=ESP32Logger2
+
+    Text item=ESP32CO23
+    Text item=ESP32Humidity3
+    Text item=ESP32Temperature3
+    Text item=ESP32LastUpdate3
+    Text item=ESP32Logger3
+
   }
 }

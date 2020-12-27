@@ -8,17 +8,39 @@ Group espMultimeter
 Group CO2
 
 String ESP8266CO2Source "SZ CO2 source [%s]" (esp8266)
-Number ESP8266TS "SZ timestamp [%d ms]" (esp8266)
+Number ESP8266TS "Lea TS [%d ms]" (esp8266)
 
 String ESP8266Logger "SZ ESP8266 [%s]" (esp8266)
 String ESP8266Logger31 "AM 1 [%s]" (esp8266)
 String ESP8266Logger32 "AM 2 [%s]" (esp8266)
 
 
-Number ESP8266CO2 "SZ CO2 [%d ppm]" (esp8266,esp8266ChartItems, CO2)
+Number ESP8266CO2 "Lea CO2 [%d ppm]" (esp8266,esp8266ChartItems, CO2)
 
-Number ESP8266Humidity "SZ humidity [%.1f]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Hum)
-Number ESP8266Temperature "SZ temp [%.1f C]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Temp)
+Number ESP8266Humidity "Lea humidity [%.1f]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Hum)
+Number ESP8266Temperature "Lea temp [%.1f C]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Temp)
+
+
+Number ESP32CO21 "Keller CO2 [%d ppm]" (esp8266,esp8266ChartItems, CO2)
+Number ESP32Humidity1 "Keller humidity [%.1f]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Hum)
+Number ESP32Temperature1 "Keller temp [%.1f C]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Temp)
+String ESP32Logger1 "Keller logger [%s]" (esp8266)
+String ESP32LastUpdate1 "Keller last update [%s]" (esp8266)
+
+Number ESP32CO22 "Wohnzimmer CO2 [%d ppm]" (esp8266,esp8266ChartItems, CO2)
+Number ESP32Humidity2 "Wohnzimmer humidity [%.1f]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Hum)
+Number ESP32Temperature2 "Wohnzimmer temp [%.1f C]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Temp)
+String ESP32Logger2 "Wohnzimmer logger [%s]" (esp8266)
+String ESP32LastUpdate2 "Wohnzimmer last update [%s]" (esp8266)
+
+
+Number ESP32CO23 "Schlaffzimmer CO2 [%d ppm]" (esp8266,esp8266ChartItems, CO2)
+Number ESP32Humidity3 "Schlaffzimmer humidity [%.1f]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Hum)
+Number ESP32Temperature3 "Schlaffzimmer temp [%.1f C]" (esp8266,esp8266ChartItems,esp8266TempHum,esp8266Temp)
+String ESP32Logger3 "Schlaffzimmer logger [%s]" (esp8266)
+String ESP32LastUpdate3 "Schlaffzimmer last update [%s]" (esp8266)
+
+
 
 Number ESP8266_Chart_Period "sd"
 Number ESP8266Voltage "SZ voltage [%.2f]" (esp8266)

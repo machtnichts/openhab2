@@ -68,22 +68,24 @@ sitemap our_home_gr label="Our Home Gr" {
     Chart label="Last Year"      item=esp8266Temp period=Y   refresh=600  visibility=[ESP8266_Chart_Period==12]
   }
 
-  Frame label="ESP8266 CO2" {
-    Chart label="Last Hour"      item=ESP8266CO2 period=h   refresh=600  visibility=[ESP8266_Chart_Period==0]
-    Chart label="Last 4H"        item=ESP8266CO2 period=4h  refresh=600  visibility=[ESP8266_Chart_Period==1]
-    Chart label="Last 8H"        item=ESP8266CO2 period=8h  refresh=600  visibility=[ESP8266_Chart_Period==2]
-    Chart label="Last 12H"       item=ESP8266CO2 period=12h refresh=600  visibility=[ESP8266_Chart_Period==3]
-    Chart label="Last day"       item=ESP8266CO2 period=D   refresh=600  visibility=[ESP8266_Chart_Period==4]
-    Chart label="Last 2d"        item=ESP8266CO2 period=2D  refresh=600  visibility=[ESP8266_Chart_Period==5]
-    Chart label="Last 3d"        item=ESP8266CO2 period=3D  refresh=600  visibility=[ESP8266_Chart_Period==6]
-    Chart label="Last Week"      item=ESP8266CO2 period=W   refresh=600  visibility=[ESP8266_Chart_Period==7]
-    Chart label="Last 2W"        item=ESP8266CO2 period=2W  refresh=600  visibility=[ESP8266_Chart_Period==8]
-    Chart label="Last Month"     item=ESP8266CO2 period=M   refresh=600  visibility=[ESP8266_Chart_Period==9]
-    Chart label="Last 2M"        item=ESP8266CO2 period=2M  refresh=600  visibility=[ESP8266_Chart_Period==10]
-    Chart label="Last 4M"        item=ESP8266CO2 period=4M  refresh=600  visibility=[ESP8266_Chart_Period==11]
-    Chart label="Last Year"      item=ESP8266CO2 period=Y   refresh=600  visibility=[ESP8266_Chart_Period==12]
+
+  Frame label=" CO2" {
+    Chart label="Last Hour"      item=CO2 period=h   refresh=600  visibility=[ESP8266_Chart_Period==0]
+    Chart label="Last 4H"        item=CO2 period=4h  refresh=600  visibility=[ESP8266_Chart_Period==1]
+    Chart label="Last 8H"        item=CO2 period=8h  refresh=600  visibility=[ESP8266_Chart_Period==2]
+    Chart label="Last 12H"       item=CO2 period=12h refresh=600  visibility=[ESP8266_Chart_Period==3]
+    Chart label="Last day"       item=CO2 period=D   refresh=600  visibility=[ESP8266_Chart_Period==4]
+    Chart label="Last 2d"        item=CO2 period=2D  refresh=600  visibility=[ESP8266_Chart_Period==5]
+    Chart label="Last 3d"        item=CO2 period=3D  refresh=600  visibility=[ESP8266_Chart_Period==6]
+    Chart label="Last Week"      item=CO2 period=W   refresh=600  visibility=[ESP8266_Chart_Period==7]
+    Chart label="Last 2W"        item=CO2 period=2W  refresh=600  visibility=[ESP8266_Chart_Period==8]
+    Chart label="Last Month"     item=CO2 period=M   refresh=600  visibility=[ESP8266_Chart_Period==9]
+    Chart label="Last 2M"        item=CO2 period=2M  refresh=600  visibility=[ESP8266_Chart_Period==10]
+    Chart label="Last 4M"        item=CO2 period=4M  refresh=600  visibility=[ESP8266_Chart_Period==11]
+    Chart label="Last Year"      item=CO2 period=Y   refresh=600  visibility=[ESP8266_Chart_Period==12]
 
   }
+
 
   Frame label="ESP8266-3 Accu Voltage" {
     Chart label="Last Hour"      item=ESP8266Voltage3 period=h   refresh=600  visibility=[ESP8266_Chart_Period==0]

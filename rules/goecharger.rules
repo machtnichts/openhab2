@@ -23,7 +23,8 @@ then
 //  logWarn("GOEC","PWL1: {}",  GoEChargerPowerL1.state)
 //  logWarn("GOEC","PWL2: {}",  GoEChargerPowerL2.state)
 //  logWarn("GOEC","PWL3: {}",  GoEChargerPowerL3.state)
-  val powerAll = dval.apply(GoEChargerPowerL1,0)*1000.0 + dval.apply(GoEChargerPowerL2,0)*1000.0 + dval.apply(GoEChargerPowerL3,0)*1000.0
+//  val powerAll = dval.apply(GoEChargerPowerL1,0)*1000.0 + dval.apply(GoEChargerPowerL2,0)*1000.0 + dval.apply(GoEChargerPowerL3,0)*1000.0
+  val powerAll = dval.apply(GoEChargerPowerL1,0) + dval.apply(GoEChargerPowerL2,0) + dval.apply(GoEChargerPowerL3,0)
 //  logWarn("GOEC","PWALL: {}",  powerAll)
   GoEChargerPower.sendCommand(powerAll)
 end
@@ -39,7 +40,8 @@ then
  if(GoEChargerFollowPV.state==ON){
    var availablePower = rval.apply(se4ACPowerGridFlow,0)
    val currentVoltage = rval.apply(GoEChargerVoltageL1,230)
-   val currentPower = (dval.apply(GoEChargerPowerL1,0) + dval.apply(GoEChargerPowerL2,0) + dval.apply(GoEChargerPowerL3,0))*1000
+   //val currentPower = (dval.apply(GoEChargerPowerL1,0) + dval.apply(GoEChargerPowerL2,0) + dval.apply(GoEChargerPowerL3,0))*1000
+   val currentPower = (dval.apply(GoEChargerPowerL1,0) + dval.apply(GoEChargerPowerL2,0) + dval.apply(GoEChargerPowerL3,0))
    logWarn("GOEC","current power {}", currentPower)
    logWarn("GOEC","current exp/imp {}", availablePower)
    availablePower = availablePower + currentPower
