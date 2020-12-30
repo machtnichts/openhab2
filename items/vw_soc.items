@@ -1,0 +1,3 @@
+Group eAuto
+Number eUpSoc "SOC [%d %%]" (eAuto)
+String eUpSocRaw "%s" {channel="exec:command:eupsoc:output"}

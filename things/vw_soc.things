@@ -1,0 +1,1 @@
+Thing exec:command:eupsoc [command="/home/baran/vw_soc.sh", interval=300, timeout=30]

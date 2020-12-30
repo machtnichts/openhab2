@@ -9,7 +9,7 @@ sitemap goecharger label="goecharger" {
   }
 
   Frame label="current values"{
-    Text item=GoEChargerMaxSessionCurrent
+    Text item=eUpSoc
     Text item=GoEChargerMaxCurrent
     Text item=se4ACPowerGridFlow
     Text item=GoEChargerPower

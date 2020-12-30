@@ -10,6 +10,7 @@ Strategies {
 Items {
         accuParameters* : strategy = everyChange, restoreOnStartup
         accuStatistics* : strategy = everyChange, everyMinute, restoreOnStartup
+        eAuto*:strategy = everyChange, everyMinute, restoreOnStartup
         CO2* : strategy = everyChange, everyMinute
         cpuSensors*: strategy = everyChange, everyMinute
         GasZaehler : strategy = everyChange, restoreOnStartup	

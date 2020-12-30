@@ -1,0 +1,8 @@
+
+rule eAutoSoc
+when Item eUpSocRaw received update
+then
+  var socString = eUpSocRaw.state.toString
+  postUpdate(eUpSoc,socString)
+end
+
