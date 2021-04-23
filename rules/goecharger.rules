@@ -55,6 +55,12 @@ then
    var phaseCount = rval.apply(GoEChargerPhases,0)
    if(phaseCount==0)
      phaseCount=1
+   //suddenly go-e charger reports 3 phases although only 1 phase cable is used :( - workaround it
+   if(phaseCount>1){ 
+     logWarn("GOEC","force phase count to 1 from {}",  phaseCount)
+     phaseCount=1
+   }
+ 
    logWarn("GOEC","pv phase count {}",  phaseCount)  
    if(phaseCount > 0)
    {
