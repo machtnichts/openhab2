@@ -5,7 +5,6 @@ sitemap goecharger label="goecharger" {
    Switch item=GoEChargerPVOnly
    Switch item=GoEChargerAllowCharging
    Setpoint item=GoEChargeCurrent label="Charge current [%d A]" minValue=6 maxValue=16 step=1
-   Chart label="Last day" item=ecar period=D refresh=600
   }
 
   Frame label="current values"{
@@ -32,4 +31,10 @@ sitemap goecharger label="goecharger" {
     Text item=GoEChargerFirmware     
     Text item=GoEChargerAccessConfiguration
   }
+
+  Frame label="charts"{
+   Chart label="Last day" item=ecar period=D refresh=600
+   Chart label="power flow" item=power period=D refresh=60
+  }
+
 }

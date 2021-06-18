@@ -63,13 +63,14 @@ Number se4ACFreq   "Frequency C[%.2f Hz]" (se4int)
 
 
 Group ecar
+Group power
 
 Number se4ACPowerImport      "Power import [%.2f W]" (se4int)
 Number se4ACPowerExport      "Power export [%.2f W]" (se4int)
 
 Number se4ACPowerConsumption "Consumption [%.2f W]" (se4int,ecar)
 Number se4ACPowerProduction  "Production [%.2f W]" (se4int,ecar)
-Number se4ACPowerGridFlow    "Power grid flow [%.2f W]" (se4int,ecar)
+Number se4ACPowerGridFlow    "Power grid flow [%.2f W]" (se4int,power)
 
 Number se4DCPowerProduction  "Production(dc) [%.2f W]" (se4int)
 Number se4DCVoltage          "DC Voltage [%.2f W]" (se4int)
